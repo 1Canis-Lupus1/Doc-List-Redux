@@ -6,6 +6,7 @@ import DocTime from './components/docTiming';
 import DocDisplay from './components/docDisplay';
 
 function App() {
+  //Storing Input Values from Doctor Form
   const [docList,setDocList]=useState([]);
   const updateDocs= formData =>{
     setDocList([...docList,formData])
@@ -24,7 +25,7 @@ function App() {
             {/* Sending props via Route */}
             <Route path="/form" component={()=>(<DocForm updateDocs={updateDocs}/>)} />
             <Route path="/timing" component={DocTime} />
-            <Route path="/display" component={DocDisplay} />
+            <Route path="/display" component={()=>(<DocDisplay updateDocs={updateDocs}/>)} />
           </Switch>
       </Router>
       </div>

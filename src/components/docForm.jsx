@@ -28,7 +28,7 @@ const DocForm=(props)=>{
         <React.Fragment>
             <Row>
                 <Col className="text-center">
-                    <h1>Doctor Details:</h1>
+                    <h1>Doctor Details :</h1>
                 </Col>
             </Row>
             <Row>
