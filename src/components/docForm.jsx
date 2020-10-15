@@ -1,10 +1,14 @@
 import React,{useState} from 'react';
 import {Row,Col,Form,FormGroup,Input,Label,Button} from 'reactstrap';
 
-const DocForm=()=>{
+const DocForm=(props)=>{
+    //Destructuring props
+    const {updateDocs}=props;
+
     //Setting initial state of input fields
     const intialData={name:"",speciality:"",experience:"",fees:"",qualification:"",location:"",lang:"",email:"",phno:"",gender:"",regno:"",specialization:"",supSpecialization:""};
     const [formData,setFormData]=useState(intialData);
+
     //Destructuring Input Field Values
     const {name,speciality,experience,fees,qualification,location,lang,email,phno,gender,regno,specialization,supSpecialization}=formData;
 
@@ -16,7 +20,8 @@ const DocForm=()=>{
 
     //Handling Form Submission
     const handleSubmit=e=>{
-        console.log(formData);
+        // console.log(formData);
+        updateDocs(formData);
     }
 
     return(

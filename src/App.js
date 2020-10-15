@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import DocForm from './components/docForm';
@@ -6,6 +6,12 @@ import DocTime from './components/docTiming';
 import DocDisplay from './components/docDisplay';
 
 function App() {
+  const [docList,setDocList]=useState([]);
+  const updateDocs= formData =>{
+    setDocList([...docList,formData])
+  }
+  console.log(docList);
+
   return (
       <div className="container mt-4">
       <Router>
@@ -15,7 +21,8 @@ function App() {
               <li>"/display" for Doctor table Display</li>
             </ol> 
           <Switch>
-            <Route path="/form" component={DocForm} />
+            {/* Sending props via Route */}
+            <Route path="/form" component={()=>(<DocForm updateDocs={updateDocs}/>)} />
             <Route path="/timing" component={DocTime} />
             <Route path="/display" component={DocDisplay} />
           </Switch>
