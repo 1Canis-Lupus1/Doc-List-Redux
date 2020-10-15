@@ -25,7 +25,7 @@ function App() {
             {/* Sending props via Route */}
             <Route path="/form" component={()=>(<DocForm updateDocs={updateDocs}/>)} />
             <Route path="/timing" component={DocTime} />
-            <Route path="/display" component={()=>(<DocDisplay updateDocs={updateDocs}/>)} />
+            <Route path="/display" component={()=>(<DocDisplay docList={docList}/>)} />
           </Switch>
       </Router>
       </div>

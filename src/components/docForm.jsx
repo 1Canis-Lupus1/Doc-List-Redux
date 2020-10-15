@@ -6,7 +6,7 @@ const DocForm=(props)=>{
     const {updateDocs}=props;
 
     //Setting initial state of input fields
-    const intialData={name:"",speciality:"",experience:"",fees:"",qualification:"",location:"",lang:"",email:"",phno:"",gender:"",regno:"",specialization:"",supSpecialization:""};
+    const intialData={name:"Shubham",speciality:"",experience:"",fees:"",qualification:"",location:"",lang:"",email:"",phno:"",gender:"",regno:"",specialization:"",supSpecialization:""};
     const [formData,setFormData]=useState(intialData);
 
     //Destructuring Input Field Values
