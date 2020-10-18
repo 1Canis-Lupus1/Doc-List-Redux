@@ -4,7 +4,7 @@ import { Row, Col, Form, FormGroup, Input, Label, Button } from 'reactstrap';
 const DocForm = () => {
 
     //Setting initial state of input fields
-    const intialData = { name: "Shubham", speciality: "", experience: "", fees: "", qualification: "", location: "", lang: "", email: "", phno: "", gender: "", regno: "", specialization: "", supSpecialization: "" };
+    const intialData = { name: "", speciality: "", experience: "", fees: "", qualification: "", location: "", lang: "", email: "", phno: "", gender: "", regno: "", specialization: "", supSpecialization: "" };
     const [formData, setFormData] = useState(intialData);
 
     //Destructuring Input Field Values
