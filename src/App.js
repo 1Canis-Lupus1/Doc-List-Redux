@@ -4,16 +4,13 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import DocForm from './components/docForm';
 import DocTime from './components/docTiming';
 import DocDisplay from './components/docDisplay';
+// import {Provider} from 'react-redux';
+// import store from './redux/store';
 
 function App() {
-  //Storing Input Values from Doctor Form
-  const [docList,setDocList]=useState([]);
-  const updateDocs= formData =>{
-    setDocList([...docList,formData])
-  }
-  console.log(docList);
 
   return (
+    // <Provider store={store}>
       <div className="container mt-4">
       <Router>
             Routes:<ol>
@@ -23,12 +20,13 @@ function App() {
             </ol> 
           <Switch>
             {/* Sending props via Route */}
-            <Route path="/form" component={()=>(<DocForm updateDocs={updateDocs}/>)} />
+            <Route path="/form" component={()=>(<DocForm />)} />
             <Route path="/timing" component={DocTime} />
-            <Route path="/display" component={()=>(<DocDisplay docList={docList}/>)} />
+            <Route path="/display" component={()=>(<DocDisplay/>)} />
           </Switch>
       </Router>
       </div>
+    // </Provider>
   );
 }
 

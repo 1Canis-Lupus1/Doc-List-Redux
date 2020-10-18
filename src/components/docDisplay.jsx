@@ -1,16 +1,16 @@
 import React from 'react';
 import { Row, Col, Table } from 'reactstrap';
 
-const DocDisplay = (props) => {
-    //Destructuring Props
-    const {docList}=props;
-    console.log(docList);//Returning Undefined
+const DocDisplay = () => {
+
+    //Fetch Data From Redux-Store and Display Here
 
     return (
         <div className="mt-4">
             <h1>Doctor Table :</h1>
             <Row>
                 <Col>
+                    {/* Creating the Doctor's Table */}
                     <Table>
                         <thead>
                             <tr>

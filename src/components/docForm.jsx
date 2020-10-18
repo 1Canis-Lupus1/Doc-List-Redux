@@ -1,30 +1,27 @@
-import React,{useState} from 'react';
-import {Row,Col,Form,FormGroup,Input,Label,Button} from 'reactstrap';
+import React, { useState } from 'react';
+import { Row, Col, Form, FormGroup, Input, Label, Button } from 'reactstrap';
 
-const DocForm=(props)=>{
-    //Destructuring props
-    const {updateDocs}=props;
+const DocForm = () => {
 
     //Setting initial state of input fields
-    const intialData={name:"Shubham",speciality:"",experience:"",fees:"",qualification:"",location:"",lang:"",email:"",phno:"",gender:"",regno:"",specialization:"",supSpecialization:""};
-    const [formData,setFormData]=useState(intialData);
+    const intialData = { name: "Shubham", speciality: "", experience: "", fees: "", qualification: "", location: "", lang: "", email: "", phno: "", gender: "", regno: "", specialization: "", supSpecialization: "" };
+    const [formData, setFormData] = useState(intialData);
 
     //Destructuring Input Field Values
-    const {name,speciality,experience,fees,qualification,location,lang,email,phno,gender,regno,specialization,supSpecialization}=formData;
+    const { name, speciality, experience, fees, qualification, location, lang, email, phno, gender, regno, specialization, supSpecialization } = formData;
 
     //Handling Input Field Value Change
-    const handleChange=e=>{
-        setFormData({...formData,[e.target.name]:[e.target.value]});
+    const handleChange = e => {
+        setFormData({ ...formData, [e.target.name]: [e.target.value] });
         // console.log(formData);
     }
 
     //Handling Form Submission
-    const handleSubmit=e=>{
-        // console.log(formData);
-        updateDocs(formData);
+    const handleSubmit = e => {
+        console.log(formData);//Send this value to redux store
     }
 
-    return(
+    return (
         <React.Fragment>
             <Row>
                 <Col className="text-center">
@@ -40,8 +37,18 @@ const DocForm=(props)=>{
                         </FormGroup>
                         <FormGroup>
                             <Label for="speciality">Speciality: </Label>
-                            <Input name="speciality" value={speciality} onChange={handleChange}></Input>
+                            <Input type="select" name="speciality" id="exampleSelect">
+                                <option>speciality 1</option>
+                                <option>speciality 2</option>
+                                <option>speciality 3</option>
+                                <option>speciality 4</option>
+                                <option>speciality 5</option>
+                            </Input>
                         </FormGroup>
+                        {/* <FormGroup>
+                            <Label for="speciality">Speciality: </Label>
+                            <Input name="speciality" value={speciality} onChange={handleChange}></Input>
+                        </FormGroup> */}
                         <FormGroup>
                             <Label for="experience">Experience: </Label>
                             <Input name="experience" placeholder="Enter Doctor's Experience" value={experience} onChange={handleChange}></Input>
@@ -88,7 +95,7 @@ const DocForm=(props)=>{
                         </FormGroup>
                         <Button onClick={handleSubmit}>Submit</Button>
                     </Form>
-                </Col> 
+                </Col>
             </Row>
         </React.Fragment>
     )
