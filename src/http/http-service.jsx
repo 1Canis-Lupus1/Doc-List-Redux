@@ -1,32 +1,35 @@
-const queryParams = params => {
-    let queryStrings = "?";
-    const keys = Object.keys(params);
-    keys.forEach((key, index) => {
-      queryStrings += key + "=" + params[key];
-      if (params[keys[index + 1]]) {
-        queryStrings += "&";
-      }
-    });
-    return queryStrings;
-};
+import {attachToken} from './attachToken';
 
-export const makeGetRequest = async (
+export const makePostRequest = async (
     url,
-    attachToken = true,
-    params = null
+    attachToken = false,
+    params = {}
   ) => {
     let headers = {
       "Accept" : "application/json",
       "Content-Type" : "application/json",
-      "Authorization" : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlY2U0MjA0ZmZkOTliMGRkMTNhNDNjMSIsIl9pZCI6IjVlY2U0MjA0ZmZkOTliMGRkMTNhNDNjMSIsImZ1bGxOYW1lIjoiQXNrIFZhaWR5YSIsImVtYWlsIjoiYWRtaW5AYXNrLXZhaWR5YS5jb20iLCJ1c2VyVHlwZSI6IkFkbWluIiwiaXNTdXBlckFkbWluIjp0cnVlLCJpYXQiOjE2MDI1MDMwNTcsImV4cCI6MTYwNTA5NTA1N30.dfpg0kxVmq64BRwrYs769z2MOmT4Jl9of55DSOIInSk"
     };
+    if(attachToken){
+        try{
+            const token=await attachToken();
+            if(token){
+                headers["Authorization"]="Bearer"+token;
+            }
+        }catch(err){
+            console.log(err);
+        }
+    }
     return new Promise((resolve, reject) => {
       try {
         fetch(url, {
-          method: "GET",
-          headers: headers
+          method: "POST",
+          headers: headers,
+          body:JSON.stringify(params)
         })
-          .then(res => res.json())
+          .then(
+              res => res.json(),
+              err=>reject(err),
+              )
           .then(jsonResponse => {
               console.log("Res: ",jsonResponse)
             resolve(jsonResponse)
