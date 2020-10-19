@@ -4,17 +4,11 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import {Provider} from 'react-redux';
-// import {createStore} from 'redux';
-import docFormData from './redux/reducers';
 
-// const store=createStore(docFormData);
 ReactDOM.render(
-  // <Provider store={store}>
     <React.StrictMode>
       <App />
     </React.StrictMode>
-  // </Provider>
   ,document.getElementById('root')
 );
 

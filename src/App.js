@@ -4,12 +4,13 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import DocForm from './components/docForm';
 import Details from './components/docDetails';
 import {Button} from 'reactstrap';
-import {connect} from 'react-redux';
-import { render } from '@testing-library/react';
+import {Provider} from 'react-redux';
+import store from "./redux/store";
 
 class App extends Component {
   render(){
   return (
+    <Provider store={store}>
       <div className="container mt-4">
       <Router>
             {/* Routes:<ol>
@@ -25,6 +26,7 @@ class App extends Component {
           </Switch>
       </Router>
       </div>
+    </Provider>
   );
 }}
 
