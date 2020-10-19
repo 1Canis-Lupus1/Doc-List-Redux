@@ -30,5 +30,5 @@ const updateGender=gender=>({type:"GENDER",payload:gender});
          updateConsults,
          updateGender
      },
-     store.dispatch
+    //  store.dispatch
  );

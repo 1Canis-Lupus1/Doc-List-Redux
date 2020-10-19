@@ -9,7 +9,6 @@ import { render } from '@testing-library/react';
 
 class App extends Component {
   render(){
-    // console.log("Data From Store:",this.props.docData);
   return (
       <div className="container mt-4">
       <Router>
