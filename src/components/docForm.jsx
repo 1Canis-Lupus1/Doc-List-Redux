@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Row, Col, Form, FormGroup, Input, Label, Button } from 'reactstrap';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import DocTime from './docTiming';
 
 const DocForm = () => {
 
@@ -19,13 +21,16 @@ const DocForm = () => {
     //Handling Form Submission
     const handleSubmit = e => {
         console.log(formData);//Send this value to redux store
+
     }
 
     return (
         <React.Fragment>
             <Row>
                 <Col className="text-center">
-                    <h1>Doctor Details :</h1>
+                    <hr/><hr/>
+                    <h1>Doctor Form :</h1>
+                    <hr/><hr/>
                 </Col>
             </Row>
             <Row>
@@ -93,7 +98,13 @@ const DocForm = () => {
                             <Label for="supSpecialization">Super Specialization: </Label>
                             <Input name="supSpecialization" placeholder="Enter Doctor's Super Specialization" value={supSpecialization} onChange={handleChange}></Input>
                         </FormGroup>
-                        <Button onClick={handleSubmit}>Submit</Button>
+                        <Router>
+                            <Button style={{color:"white"}} onClick={handleSubmit}><Link path="/timing" to="timing">Add Timings</Link></Button>
+                            <Switch>
+                                <Route path="/timing" component={DocTime} />
+                            </Switch>
+                        </Router>
+                        {/* <Button ></Button> */}
                     </Form>
                 </Col>
             </Row>

@@ -6,8 +6,12 @@ const DocDisplay = () => {
     //Fetch Data From Redux-Store and Display Here
 
     return (
-        <div className="mt-4">
-            <h1>Doctor Table :</h1>
+        <div className="mt-4" >
+            <Col className="text-center">
+                <hr/><hr/>
+                <h1>Doctor Table :</h1>
+                <hr/><hr/>
+            </Col>
             <Row>
                 <Col>
                     {/* Creating the Doctor's Table */}

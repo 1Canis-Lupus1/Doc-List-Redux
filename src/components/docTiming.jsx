@@ -1,31 +1,35 @@
-import React,{useState,useEffect} from 'react';
-import { FormGroup,Label,Input,Button } from 'reactstrap';
+import React, { useState, useEffect } from 'react';
+import { FormGroup, Label, Input, Button, Col } from 'reactstrap';
 
 const DocTime = () => {
-    const initialTime={monStart:"",monEnd:"",tueStart:"",tueEnd:"",wedStart:"",wedEnd:"",thrusStart:"",thrusEnd:"",friStart:"",friEnd:"",satStart:"",satEnd:"",sunStart:"",sunEnd:""};
-    const [docTime,setDocTime]=useState(initialTime);
+    const initialTime = { monStart: "", monEnd: "", tueStart: "", tueEnd: "", wedStart: "", wedEnd: "", thrusStart: "", thrusEnd: "", friStart: "", friEnd: "", satStart: "", satEnd: "", sunStart: "", sunEnd: "" };
+    const [docTime, setDocTime] = useState(initialTime);
 
     //Destructuring Doctor Timings
-    const {monStart,monEnd,tueStart,tueEnd,wedStart,wedEnd,thrusStart,thrusEnd,friStart,friEnd,satStart,satEnd,sunStart,sunEnd}=docTime;
+    const { monStart, monEnd, tueStart, tueEnd, wedStart, wedEnd, thrusStart, thrusEnd, friStart, friEnd, satStart, satEnd, sunStart, sunEnd } = docTime;
 
     //Handling Date Change
-    const handleChange=(e)=>{
+    const handleChange = (e) => {
         //Setting the state of individual timing fields
-        setDocTime({...docTime,[e.target.name]:e.target.value});
+        setDocTime({ ...docTime, [e.target.name]: e.target.value });
         //Logs the Value with Name
-        console.log("Timings:",e.target.name,e.target.value);
+        console.log("Timings:", e.target.name, e.target.value);
     }
 
     //Setting the state using useEffect
-    useEffect(()=>{
-        console.log("Changed Timings:",docTime);
-    },[docTime])
+    useEffect(() => {
+        console.log("Changed Timings:", docTime);
+    }, [docTime])
 
     // console.log("Timing:",docTime)
 
     return (
         <React.Fragment>
-            <h1>Doctor-Timing</h1><hr/><hr/>
+            <Col className="text-center">
+                <hr/><hr/>
+                <h1>Doctor-Timing</h1>
+                <hr/><hr />
+                </Col>
             <FormGroup>
                 {/* Monday */}
                 <h3>Monday</h3>
@@ -45,7 +49,7 @@ const DocTime = () => {
                     <option> 4</option>
                     <option> 5</option>
                 </Input>
-                <hr/>
+                <hr />
 
                 {/* Tuesday */}
                 <h3>Tuesday</h3>
@@ -65,7 +69,7 @@ const DocTime = () => {
                     <option> 4</option>
                     <option> 5</option>
                 </Input>
-                <hr/>
+                <hr />
 
                 {/* Wednesday */}
                 <h3>Wednesday</h3>
@@ -85,7 +89,7 @@ const DocTime = () => {
                     <option> 4</option>
                     <option> 5</option>
                 </Input>
-                <hr/>
+                <hr />
 
                 {/* Thrusday */}
                 <h3>Thrusday</h3>
@@ -105,7 +109,7 @@ const DocTime = () => {
                     <option> 4</option>
                     <option> 5</option>
                 </Input>
-                <hr/>
+                <hr />
 
                 {/* Friday */}
                 <h3>Friday</h3>
@@ -125,7 +129,7 @@ const DocTime = () => {
                     <option> 4</option>
                     <option> 5</option>
                 </Input>
-                <hr/>
+                <hr />
 
                 {/* Saturday */}
                 <h3>Saturday</h3>
@@ -145,7 +149,7 @@ const DocTime = () => {
                     <option> 4</option>
                     <option> 5</option>
                 </Input>
-                <hr/>
+                <hr />
 
                 {/* Sunday */}
                 <h3>Sunday</h3>
@@ -165,7 +169,7 @@ const DocTime = () => {
                     <option> 4</option>
                     <option> 5</option>
                 </Input>
-                <hr/>
+                <hr />
                 <Button>Submit</Button>
             </FormGroup>
 

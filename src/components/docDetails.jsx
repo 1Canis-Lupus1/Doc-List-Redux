@@ -26,7 +26,11 @@ class Details extends Component {
     render() {
         return (
             <React.Fragment>
-                <h1>Doctor Details</h1>
+                <Col className="text-center">
+                    <hr/><hr/>
+                    <h1>Doctor Details :</h1>
+                    <hr/><hr/>
+                </Col>
                 <Row>
                     <Col>
                         <Table>
