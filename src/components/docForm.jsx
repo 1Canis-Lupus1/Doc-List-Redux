@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Row, Col, Form, FormGroup, Input, Label, Button } from 'reactstrap';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import DocTime from './docTiming';
-import { actionCreators } from '../redux/actionCreator';
+import { actionCreators } from '../redux/actionTypes';
 
 const DocForm = () => {
 

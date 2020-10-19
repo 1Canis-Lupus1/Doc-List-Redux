@@ -1,17 +1,34 @@
+import {ADD_FORM,ADD_TIME} from './actionTypes';
+
 const initialState={
-    docData:[]
-};
+    docData:{},
+    docTime:{}
+}
 
-const docFormData=(state=initialState,action)=>{
+export const displayData=(state=initialState,action)=>{
     switch(action.type){
-        case "":
-            return {
-                ...state,
-                docData:[...state.docData,action.payload]
-            };
-        default:
-            return state;
+        case ADD_FORM:{
+            return (
+                {
+                    ...state,
+                    docData:{
+                        ...state.docData
+                    }
+                }
+            )
+        }
+        case ADD_TIME:{
+            return (
+                {
+                    ...state,
+                    docTime:{
+                        ...state.docTime
+                    }
+                }
+            )
+        }
+        default:{
+            return state
+        }
     }
-};
-
-export default docFormData;
+}
