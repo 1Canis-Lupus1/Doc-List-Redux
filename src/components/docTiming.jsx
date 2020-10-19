@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import { FormGroup,Label,Input,Button } from 'reactstrap';
 import ReactDOM from 'react-dom';
+import { useEffect } from 'react';
 
 const DocTime = () => {
     const initialTime={monStart:"",monEnd:"",tueStart:"",tueEnd:"",wedStart:"",wedEnd:"",thrusStart:"",thrusEnd:"",friStart:"",friEnd:"",satStart:"",satEnd:"",sunStart:"",sunEnd:""};
@@ -9,7 +10,7 @@ const DocTime = () => {
     //Destructuring Doctor Timings
     const {monStart,monEnd,tueStart,tueEnd,wedStart,wedEnd,thrusStart,thrusEnd,friStart,friEnd,satStart,satEnd,sunStart,sunEnd}=docTime;
 
-    //Handling Date Change
+    // Handling Date Change
     const handleChange=(e)=>{
         //Setting the state of individual timing fields
         setDocTime({[e.target.name]:[e.target.value]});
@@ -19,6 +20,10 @@ const DocTime = () => {
         console.log("Timings:",docTime);//********docTime is not updated with the new value
     }
 
+    // useEffect(()=>{
+
+    // })
+
     return (
         <React.Fragment>
             <h1>Doctor-Timing</h1><hr/><hr/>
@@ -26,7 +31,7 @@ const DocTime = () => {
                 {/* Monday */}
                 <h3>Monday</h3>
                 <Label className="m-2" for="monStart">Start Time: </Label>
-                <Input className="col-6 m-1" type="select" name="monStart" value={monStart} onChange={handleChange}>
+                <Input className="col-6 m-1" type="select" name="monStart" value={monStart} onChange={(e)=>setDocTime({[e.target.name]:[e.target.value]})}>
                     <option> 1</option>
                     <option> 2</option>
                     <option> 3</option>

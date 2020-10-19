@@ -38,27 +38,27 @@ class Details extends Component {
                                     <th>Location</th>
                                     <th>Speciality</th>
                                     <th>Consult Fees</th>
-                                    <th>Registration Number</th>
+                                    <th>Consults</th>
+                                    <th>Schedule</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    {this.state.details.map((item) => {
+                            {this.state.details.map((item) => {
                                         return(
-                                            <>
+                                            <tr>
                                         <th>{item.name?.full}</th>
                                         <th>{item.email}</th>
                                         <th>{item.phone}</th>
                                         <th>{item.location?.city}    </th>
                                         <th>{item.speciality}</th>
                                         <th>{item.fee}</th>
+                                        <th>{item.totalAppointment}</th>
                                         <th>{item.registrationNumber}</th>
                                         <th>{item.isActive?"Active":"In-Active"}</th>
-                                            </>
+                                            </tr>
                                         )
                                     })}
-                                </tr>
                             </tbody>
                         </Table>
                     </Col>
