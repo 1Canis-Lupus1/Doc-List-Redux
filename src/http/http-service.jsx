@@ -1,5 +1,3 @@
-import {attachToken} from './attachToken';
-
 export const makePostRequest = async (
     url,
     attachToken = false,
@@ -8,17 +6,8 @@ export const makePostRequest = async (
     let headers = {
       "Accept" : "application/json",
       "Content-Type" : "application/json",
+      "Authorization" : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlY2U0MjA0ZmZkOTliMGRkMTNhNDNjMSIsIl9pZCI6IjVlY2U0MjA0ZmZkOTliMGRkMTNhNDNjMSIsImZ1bGxOYW1lIjoiQXNrIFZhaWR5YSIsImVtYWlsIjoiYWRtaW5AYXNrLXZhaWR5YS5jb20iLCJ1c2VyVHlwZSI6IkFkbWluIiwiaXNTdXBlckFkbWluIjp0cnVlLCJpYXQiOjE2MDI1MDMwNTcsImV4cCI6MTYwNTA5NTA1N30.dfpg0kxVmq64BRwrYs769z2MOmT4Jl9of55DSOIInSk"
     };
-    if(attachToken){
-        try{
-            const token=await attachToken();
-            if(token){
-                headers["Authorization"]="Bearer"+token;
-            }
-        }catch(err){
-            console.log(err);
-        }
-    }
     return new Promise((resolve, reject) => {
       try {
         fetch(url, {
@@ -31,7 +20,7 @@ export const makePostRequest = async (
               err=>reject(err),
               )
           .then(jsonResponse => {
-              console.log("Res: ",jsonResponse)
+            //   console.log("Res: ",jsonResponse)
             resolve(jsonResponse)
           })
           .catch(e => {

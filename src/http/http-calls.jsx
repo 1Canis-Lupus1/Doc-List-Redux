@@ -9,8 +9,8 @@ export const docData = () => {
           {pageNumber: 1,pageSize: 10, filters:{}}
       )
       .then(res => {
-          resolve(res);
-          console.log("In Calls:",res)
+          resolve(res.doctors);
+        //   console.log("In Calls:",res)
         })
         .catch(e => {
           console.log("API call error: ", e);
