@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FormGroup, Label, Input, Button, Col } from 'reactstrap';
+import {addTimeData} from '../redux/actions';
 
 const DocTime = () => {
     const initialTime = { monStart: "", monEnd: "", tueStart: "", tueEnd: "", wedStart: "", wedEnd: "", thrusStart: "", thrusEnd: "", friStart: "", friEnd: "", satStart: "", satEnd: "", sunStart: "", sunEnd: "" };
@@ -19,6 +20,7 @@ const DocTime = () => {
     //Setting the state using useEffect
     useEffect(() => {
         console.log("Changed Timings:", docTime);
+        addTimeData(docTime);//Adding Time to Redux
     }, [docTime])
 
     // console.log("Timing:",docTime)
