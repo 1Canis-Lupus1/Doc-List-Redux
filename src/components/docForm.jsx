@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { Row, Col, Form, FormGroup, Input, Label, Button } from 'reactstrap';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import DocTime from './docTiming';
-import { actionCreators } from '../redux/actionTypes';
+import {addFormData} from '../redux/actions';
+import {connect} from 'react-redux';
 
-const DocForm = () => {
+const DocForm = ({addFormData}) => {
 
     //Setting initial state of input fields
     const intialData = { name: "", speciality: "", experience: "", fees: "", qualification: "", location: "", lang: "", email: "", phno: "", gender: "", regno: "", specialization: "", supSpecialization: "" };
@@ -24,7 +25,8 @@ const DocForm = () => {
     //Handling Form Submission
     const handleSubmit = e => {
         e.preventDefault();
-        console.log(formData);//Send this value to redux store
+        console.log(formData);
+        addFormData(formData);//Sending this value to redux store
     }
 
     return (
@@ -110,4 +112,4 @@ const DocForm = () => {
     )
 }
 
-export default DocForm;
+export default connect(null,{addFormData})(DocForm);
