@@ -12,11 +12,11 @@ class Details extends Component {
 
     componentDidMount() {
         docData().then(response => {
-            console.log("Response:", response);
+            // console.log("Response:", response);
             this.setState({
                 details: response.doctors
             })
-            console.log("State:", this.state.details);
+            console.log("Doctor Details:", this.state.details);
         })
             .catch(err => {
                 console.log("Error:", err);
@@ -46,7 +46,7 @@ class Details extends Component {
                             <tbody>
                             {this.state.details.map((item) => {
                                         return(
-                                            <tr>
+                                            <tr key={item.id}>
                                         <th>{item.name?.full}</th>
                                         <th>{item.email}</th>
                                         <th>{item.phone}</th>
