@@ -1,34 +1,74 @@
-import React,{Component} from 'react';
-import {docData} from '../http/http-calls';
+import React, { Component } from 'react';
+import { docData } from '../http/http-calls';
+import { Row, Col, Table } from 'reactstrap';
 
-class Details extends Component{
-    constructor(props){
+class Details extends Component {
+    constructor(props) {
         super(props);
-        this.state={
-            details:[]
+        this.state = {
+            details: []
         }
     }
 
-    componentDidMount(){
-        docData().then(response=>{
-            console.log("Response:",response);
+    componentDidMount() {
+        docData().then(response => {
+            console.log("Response:", response);
             this.setState({
                 details: response.doctors
             })
-            console.log("State:",this.state.details);
+            console.log("State:", this.state.details);
         })
-        .catch(err=>{
-            console.log("Error:",err);
-        })
-        
+            .catch(err => {
+                console.log("Error:", err);
+            })
+
     }
-    render(){
-        return(
+    render() {
+        return (
             <React.Fragment>
-                <h2>Hello From Details Page</h2>
-                <ul>{this.state.details.map((item)=>{
-                    return <li>{item.email}</li>
-                })}</ul>
+                <h1>Doctor Details</h1>
+                <Row>
+                    <Col>
+                        <Table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Location</th>
+                                    <th>Speciality</th>
+                                    <th>Consult Fees</th>
+                                    <th>Registration Number</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    {this.state.details.map((item) => {
+                                        return(
+                                            <>
+                                        <th>{item.name?.full}</th>
+                                        <th>{item.email}</th>
+                                        <th>{item.phone}</th>
+                                        <th>{item.location?.city}    </th>
+                                        <th>{item.speciality}</th>
+                                        <th>{item.fee}</th>
+                                        <th>{item.registrationNumber}</th>
+                                        <th>{item.isActive?"Active":"In-Active"}</th>
+                                            </>
+                                        )
+                                    })}
+                                </tr>
+                            </tbody>
+                        </Table>
+                    </Col>
+                </Row>
+                {/* <ol>
+                    {this.state.details.map((item) => {
+                        return <li>{item.name?.full}</li>
+                    })}
+
+                </ol> */}
             </React.Fragment>
         )
     }
