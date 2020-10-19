@@ -16,7 +16,7 @@ const DocTime = () => {
         //Logs the Value with Name
         console.log("Timings:",e.target.name,e.target.value);
         // console.log(e.target.name.getValue());
-        
+        console.log("Timings:",docTime);//********docTime is not updated with the new value
     }
 
     return (
