@@ -1,11 +1,10 @@
 import {ADD_FORM,ADD_TIME} from './actionTypes';
 
-const initialState={
-    docData:{},
-    docTime:{}
+const initialDataState={
+    docData:{}
 }
 
-export const displayData=(state=initialState,action)=>{
+export const displayData=(state=initialDataState,action)=>{
     switch(action.type){
         case ADD_FORM:{
             return (
@@ -17,8 +16,20 @@ export const displayData=(state=initialState,action)=>{
                 }
             )
         }
+        default:{
+            return state
+        }
+    }
+}
+
+const initialTimeState={
+    docTime:{}
+}
+
+export const displayTime=(state=initialTimeState,action)=>{
+    switch(action.type){
         case ADD_TIME:{
-            return (
+            return(
                 {
                     ...state,
                     docTime:{
@@ -26,9 +37,6 @@ export const displayData=(state=initialState,action)=>{
                     }
                 }
             )
-        }
-        default:{
-            return state
         }
     }
 }
