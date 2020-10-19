@@ -172,27 +172,6 @@ const DocTime = () => {
                 <hr />
                 <Button>Submit</Button>
             </FormGroup>
-
-            {/* <UncontrolledDropdown>
-                <DropdownToggle>
-                    Select Start Time
-                </DropdownToggle>
-                <DropdownMenu>
-                    <DropdownItem>Time1</DropdownItem>
-                    <DropdownItem>Time2</DropdownItem>
-                    <DropdownItem>Time3</DropdownItem>
-                </DropdownMenu>
-            </UncontrolledDropdown>
-            <UncontrolledDropdown>
-                <DropdownToggle>
-                    Select End Time
-                </DropdownToggle>
-                <DropdownMenu>
-                    <DropdownItem>Time1</DropdownItem>
-                    <DropdownItem>Time2</DropdownItem>
-                    <DropdownItem>Time3</DropdownItem>
-                </DropdownMenu>
-            </UncontrolledDropdown> */}
         </React.Fragment>
     )
 }

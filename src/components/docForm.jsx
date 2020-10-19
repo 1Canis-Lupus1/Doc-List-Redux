@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Row, Col, Form, FormGroup, Input, Label, Button } from 'reactstrap';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import DocTime from './docTiming';
+import { actionCreators } from '../redux/actionCreator';
 
 const DocForm = () => {
 
@@ -12,6 +13,8 @@ const DocForm = () => {
     //Destructuring Input Field Values
     const { name, speciality, experience, fees, qualification, location, lang, email, phno, gender, regno, specialization, supSpecialization } = formData;
 
+    console.log("DOCFORM:",formData);
+
     //Handling Input Field Value Change
     const handleChange = e => {
         setFormData({ ...formData, [e.target.name]: [e.target.value] });
@@ -20,8 +23,8 @@ const DocForm = () => {
 
     //Handling Form Submission
     const handleSubmit = e => {
+        e.preventDefault();
         console.log(formData);//Send this value to redux store
-
     }
 
     return (
@@ -50,10 +53,6 @@ const DocForm = () => {
                                 <option>speciality 5</option>
                             </Input>
                         </FormGroup>
-                        {/* <FormGroup>
-                            <Label for="speciality">Speciality: </Label>
-                            <Input name="speciality" value={speciality} onChange={handleChange}></Input>
-                        </FormGroup> */}
                         <FormGroup>
                             <Label for="experience">Experience: </Label>
                             <Input name="experience" placeholder="Enter Doctor's Experience" value={experience} onChange={handleChange}></Input>
@@ -104,7 +103,6 @@ const DocForm = () => {
                                 <Route path="/timing" component={DocTime} />
                             </Switch>
                         </Router>
-                        {/* <Button ></Button> */}
                     </Form>
                 </Col>
             </Row>
