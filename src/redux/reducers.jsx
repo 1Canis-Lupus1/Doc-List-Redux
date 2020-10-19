@@ -38,5 +38,8 @@ export const displayTime=(state=initialTimeState,action)=>{
                 }
             )
         }
+        default:{
+            return state
+        }
     }
 }
