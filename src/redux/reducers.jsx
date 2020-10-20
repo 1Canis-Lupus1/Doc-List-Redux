@@ -61,13 +61,13 @@ export const formDataReducer = (
         }
         case ADD_TIME: {
             doctorState.user.availability = {
-                Monday: action.payload.timingForm.monday,
-                Tuesday: action.payload.timingForm.tuesday,
-                Wednesday: action.payload.timingForm.wednesday,
-                Thursday: action.payload.timingForm.thursday,
-                Friday: action.payload.timingForm.friday,
-                Saturday: action.payload.timingForm.saturday,
-                Sunday: action.payload.timingForm.sunday
+                Monday: action.payload.docTime.monday,
+                Tuesday: action.payload.docTime.tuesday,
+                Wednesday: action.payload.docTime.wednesday,
+                Thursday: action.payload.docTime.thursday,
+                Friday: action.payload.docTime.friday,
+                Saturday: action.payload.docTime.saturday,
+                Sunday: action.payload.docTime.sunday
             }
             break;
         }
