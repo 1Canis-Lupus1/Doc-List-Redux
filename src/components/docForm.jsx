@@ -117,8 +117,8 @@ class AddDetails extends Component {
             } else if (each === "fees" && isTrue.fees) {
                 if (!doctor.fees.trim().length) {
                     errorMsg.fees = "*Field Cannot Be Empty";
-                } else if (!doctor.fees.match(/^[0-9]{3,4,5}$/)) {
-                    errorMsg.fees = "Enter valid fees";
+                } else if (!doctor.fees.match(/^[0-9]{4,5}$/)) {
+                    errorMsg.fees = "Enter valid fees(1000-99000)";
                 } else {
                     delete errorMsg[each];
                     isTrue.fees = false;

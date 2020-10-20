@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Col, Row, Button, Form, FormGroup, Label } from 'reactstrap';
 import { connect } from "react-redux";
 import { Redirect } from 'react-router-dom';
-import { addTimeData, addTableData} from '../redux/actions';
+import { addTimeData, addTableData } from '../redux/actions';
 
 class AddTiming extends Component {
 
@@ -38,6 +38,19 @@ class AddTiming extends Component {
         //Set true inside the setState method
         redirect: false
     }
+    
+    handleChange = (e, index, day) => {
+        e.preventDefault();
+        const { days, isTrue } = this.state;
+        const { name, value } = e.target;
+        const selectBox = this.state.days[day];
+        const newselectBox = [...selectBox];
+        newselectBox[index][name] = value;
+        isTrue[day] = true;
+        this.setState({ days, isTrue }, () => {
+                this.validation();
+            });
+        }
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -65,18 +78,6 @@ class AddTiming extends Component {
         });
     }
 
-    handleChange = (e, index, day) => {
-        e.preventDefault();
-        const { days, isTrue } = this.state;
-        const { name, value } = e.target;
-        const selectBox = this.state.days[day];
-        const newselectBox = [...selectBox];
-        newselectBox[index][name] = value;
-        isTrue[day] = true;
-        this.setState({ days, isTrue }, () => {
-            this.validation();
-        });
-    }
 
     validation = () => {
         //Destructuring state
@@ -118,7 +119,7 @@ class AddTiming extends Component {
                         }
                     }
                 });
-            } 
+            }
             //TUESDAY
             else if (val === "tuesday" && isTrue.tuesday) {
                 days[val].forEach((key, index) => {
@@ -146,7 +147,7 @@ class AddTiming extends Component {
                         }
                     }
                 });
-            } 
+            }
             //WEDNESDAY
             else if (val === "wednesday" && isTrue.wednesday) {
                 days[val].forEach((key, index) => {
@@ -202,7 +203,7 @@ class AddTiming extends Component {
                         }
                     }
                 });
-            } 
+            }
             //FRIDAY
             else if (val === "friday" && isTrue.friday) {
                 days[val].forEach((key, index) => {
@@ -230,7 +231,7 @@ class AddTiming extends Component {
                         }
                     }
                 });
-            } 
+            }
             //SATURDAY
             else if (val === "saturday" && isTrue.saturday) {
                 days[val].forEach((key, index) => {
@@ -258,7 +259,7 @@ class AddTiming extends Component {
                         }
                     }
                 });
-            } 
+            }
             //SUNDAY
             else if (val === "sunday" && isTrue.sunday) {
                 days[val].forEach((key, index) => {
@@ -483,295 +484,295 @@ class AddTiming extends Component {
         })
         return (
             <React.Fragment>
-            <div className="timingForm">
-                {this.state.redirect ? <Redirect to={{
-                    pathname: '/dispalyDocDetails'
-                }} /> : ''}
-                <Col className="text-center">
-                    <hr/><hr/>
-                    <h1>New Doctor Timings:</h1>
-                    <hr/><hr/>
-                </Col>
-                <div style={{ paddingLeft: "250px" }}>
-                    <Form onSubmit={this.handleSubmit}>
-                        <Row form>
-                            <FormGroup>
-                                <h2>Monday</h2>
-                                <Button onClick={(e) => this.addInput(e, "monday")}>Add</Button>
-                                <hr/>
-                                {this.state.days.monday.map((item, i) => {
-                                    return (
-                                        <Row key={i}>
-                                            <Col >
-                                                <FormGroup>
-                                                    <Label for="startTime">Start</Label>
-                                                    <select style={{ width: '100%' }} name="startTime"
-                                                        onChange={(e) => this.handleChange(e, i, "monday")} >
-                                                        <option>Select Start Time</option>
-                                                        {optionList}
-                                                    </select>
-                                                </FormGroup>
-                                            </Col>
-                                            <Col >
-                                                <FormGroup>
-                                                    <Label for="endTime">End</Label>
-                                                    <select style={{ width: '100%' }} name="endTime"
-                                                        onChange={(e) => this.handleChange(e, i, "monday")} >
-                                                        <option>Select End Time</option>
-                                                        {optionList}
-                                                    </select>
-                                                </FormGroup>
-                                            </Col>
-                                            <Button onClick={(e) => this.deleteInput(e, i, "monday")}>Delete</Button>
-                                        </Row>
-                                    )
-                                })}
-                                {this.state.errors && (
-                                    <small style={{ color: "red" }}>
-                                        {this.state.errors.monday}
-                                    </small>
-                                )}
-                            </FormGroup>
-                        </Row>
-                        <Row form>
-                            <FormGroup>
-                                <h2>Tuesday</h2>
-                                <Button type="submit" onClick={(e) => this.addInput(e, "tuesday")}>Add</Button>
-                                <hr/>
-                                {this.state.days.tuesday.map((item, i) => {
-                                    return (
-                                        <Row key={i}>
-                                            <Col >
-                                                <FormGroup>
-                                                    <Label for="startTime">Start</Label>
-                                                    <select style={{ width: '100%' }} name="startTime"
-                                                        onChange={(e) => this.handleChange(e, i, "tuesday")} >
-                                                        <option>Select Start Time</option>
-                                                        {optionList}
-                                                    </select>
-                                                </FormGroup>
-                                            </Col>
-                                            <Col >
-                                                <FormGroup>
-                                                    <Label for="endTime">End</Label>
-                                                    <select style={{ width: '100%' }} name="endTime"
-                                                        onChange={(e) => this.handleChange(e, i, "tuesday")} >
-                                                        <option>Select End Time</option>
-                                                        {optionList}
-                                                    </select>
-                                                </FormGroup>
-                                            </Col>
-                                            <Button type="submit" onClick={(e) => this.deleteInput(e, i, "tuesday")}>Delete</Button>
-                                        </Row>
-                                    )
-                                })}
-                                {this.state.errors && (
-                                    <small style={{ color: "red" }}>
-                                        {this.state.errors.tuesday}
-                                    </small>
-                                )}
-                            </FormGroup>
-                        </Row>
-                        <Row form>
-                            <FormGroup>
-                                <h2>Wednesday</h2>
-                                <Button type="submit" onClick={(e) => this.addInput(e, "wednesday")}>Add</Button>
-                                <hr/>
-                                {this.state.days.wednesday.map((item, i) => {
-                                    return (
-                                        <Row key={i}>
-                                            <Col >
-                                                <FormGroup>
-                                                    <Label for="startTime">Start</Label>
-                                                    <select style={{ width: '100%' }} name="startTime"
-                                                        onChange={(e) => this.handleChange(e, i, "wednesday")} >
-                                                        <option>Select Start Time</option>
-                                                        {optionList}
-                                                    </select>
-                                                </FormGroup>
-                                            </Col>
-                                            <Col >
-                                                <FormGroup>
-                                                    <Label for="endTime">End</Label>
-                                                    <select style={{ width: '100%' }} name="endTime"
-                                                        onChange={(e) => this.handleChange(e, i, "wednesday")}>
-                                                        <option>Select End Time</option>
-                                                        {optionList}
-                                                    </select>
-                                                </FormGroup>
-                                            </Col>
-                                            <Button type="submit" onClick={(e) => this.deleteInput(e, i, "wednesday")}>Delete</Button>
-                                        </Row>
-                                    )
-                                })}
-                                {this.state.errors && (
-                                    <small style={{ color: "red" }}>
-                                        {this.state.errors.wednesday}
-                                    </small>
-                                )}
-                            </FormGroup>
-                        </Row>
-                        <Row form>
-                            <FormGroup>
-                                <h2>Thursday</h2>
-                                <Button type="submit" onClick={(e) => this.addInput(e, "thursday")}>Add</Button>
-                                <hr/>
-                                {this.state.days.thursday.map((item, i) => {
-                                    return (
-                                        <Row key={i}>
-                                            <Col >
-                                                <FormGroup>
-                                                    <Label for="startTime">Start</Label>
-                                                    <select style={{ width: '100%' }} name="startTime"
-                                                        onChange={(e) => this.handleChange(e, i, "thursday")} >
-                                                        <option>Select Start Time</option>
-                                                        {optionList}
-                                                    </select>
-                                                </FormGroup>
-                                            </Col>
-                                            <Col >
-                                                <FormGroup>
-                                                    <Label for="endTime">End</Label>
-                                                    <select style={{ width: '100%' }} name="endTime"
-                                                        onChange={(e) => this.handleChange(e, i, "thursday")} >
-                                                        <option>Select End Time</option>
-                                                        {optionList}
-                                                    </select>
-                                                </FormGroup>
-                                            </Col>
-                                            <Button type="submit" onClick={(e) => this.deleteInput(e, i, "thursday")}>Delete</Button>
-                                        </Row>
-                                    )
-                                })}
-                                {this.state.errors && (
-                                    <small style={{ color: "red" }}>
-                                        {this.state.errors.thursday}
-                                    </small>
-                                )}
-                            </FormGroup>
-                        </Row>
-                        <Row form>
-                            <FormGroup>
-                                <h2>Friday</h2>
-                                <Button type="submit" onClick={(e) => this.addInput(e, "friday")}>Add</Button>
-                                <hr/>
-                                {this.state.days.friday.map((item, i) => {
-                                    return (
-                                        <Row key={i}>
-                                            <Col >
-                                                <FormGroup>
-                                                    <Label for="startTime">Start</Label>
-                                                    <select style={{ width: '100%' }} name="startTime"
-                                                        onChange={(e) => this.handleChange(e, i, "friday")} >
-                                                        <option>Select Start Time</option>
-                                                        {optionList}
-                                                    </select>
-                                                </FormGroup>
-                                            </Col>
-                                            <Col >
-                                                <FormGroup>
-                                                    <Label for="endTime">End</Label>
-                                                    <select style={{ width: '100%' }} name="endTime"
-                                                        onChange={(e) => this.handleChange(e, i, "friday")} >
-                                                        <option>Select End Time</option>
-                                                        {optionList}
-                                                    </select>
-                                                </FormGroup>
-                                            </Col>
-                                            <Button type="submit" onClick={(e) => this.deleteInput(e, i, "friday")}>Delete</Button>
-                                        </Row>
-                                    )
-                                })}
-                                {this.state.errors && (
-                                    <small style={{ color: "red" }}>
-                                        {this.state.errors.friday}
-                                    </small>
-                                )}
-                            </FormGroup>
-                        </Row>
-                        <Row form>
-                            <FormGroup>
-                                <h2>Saturday</h2>
-                                <Button type="submit" onClick={(e) => this.addInput(e, "saturday")}>Add</Button>
-                                <hr/>
-                                {this.state.days.saturday.map((item, i) => {
-                                    return (
-                                        <Row key={i}>
-                                            <Col >
-                                                <FormGroup>
-                                                    <Label for="startTime">Start</Label>
-                                                    <select style={{ width: '100%' }} name="startTime"
-                                                        onChange={(e) => this.handleChange(e, i, "saturday")} >
-                                                        <option>Select Start Time</option>
-                                                        {optionList}
-                                                    </select>
-                                                </FormGroup>
-                                            </Col>
-                                            <Col >
-                                                <FormGroup>
-                                                    <Label for="endTime">End</Label>
-                                                    <select style={{ width: '100%' }} name="endTime"
-                                                        onChange={(e) => this.handleChange(e, i, "saturday")} >
-                                                        <option>Select End Time</option>
-                                                        {optionList}
-                                                    </select>
-                                                </FormGroup>
-                                            </Col>
-                                            <Button type="submit" onClick={(e) => this.deleteInput(e, i, "saturday")}>Delete</Button>
-                                        </Row>
-                                    )
-                                })}
-                                {this.state.errors && (
-                                    <small style={{ color: "red" }}>
-                                        {this.state.errors.saturday}
-                                    </small>
-                                )}
-                            </FormGroup>
-                        </Row>
-                        <Row form>
-                            <FormGroup>
-                                <h2>Sunday</h2>
-                                <Button type="submit" onClick={(e) => this.addInput(e, "sunday")}>Add</Button>
-                                <hr/><hr/>
-                                {this.state.days.sunday.map((item, i) => {
-                                    return (
-                                        <Row key={i}>
-                                            <Col >
-                                                <FormGroup>
-                                                    <Label for="startTime">Start</Label>
-                                                    <select style={{ width: '100%' }} name="startTime"
-                                                        onChange={(e) => this.handleChange(e, i, "sunday")} >
-                                                        <option>Select Start Time</option>
-                                                        {optionList}
-                                                    </select>
-                                                </FormGroup>
-                                            </Col>
-                                            <Col >
-                                                <FormGroup>
-                                                    <Label for="endTime">End</Label>
-                                                    <select style={{ width: '100%' }} name="endTime"
-                                                        onChange={(e) => this.handleChange(e, i, "sunday")} >
-                                                        <option>Select End Time</option>
-                                                        {optionList}
-                                                    </select>
-                                                </FormGroup>
-                                            </Col>
-                                            <Button type="submit" onClick={(e) => this.deleteInput(e, i, "sunday")}>Delete</Button>
-                                        </Row>
-                                    )
-                                })}
-                                {this.state.errors && (
-                                    <small style={{ color: "red" }}>
-                                        {this.state.errors.sunday}
-                                    </small>
-                                )}
-                            </FormGroup>
-                        </Row>
-                        <Button type="submit">Save</Button>
-                    </Form>
+                <div className="timingForm">
+                    {this.state.redirect ? <Redirect to={{
+                        pathname: '/dispalyDocDetails'
+                    }} /> : ''}
+                    <Col className="text-center">
+                        <hr /><hr />
+                        <h1>New Doctor Timings:</h1>
+                        <hr /><hr />
+                    </Col>
+                    <div style={{ paddingLeft: "250px" }}>
+                        <Form onSubmit={this.handleSubmit}>
+                            <Row form>
+                                <FormGroup>
+                                    <h2>Monday</h2>
+                                    <Button onClick={(e) => this.addInput(e, "monday")}>Add</Button>
+                                    <hr />
+                                    {this.state.days.monday.map((item, i) => {
+                                        return (
+                                            <Row key={i}>
+                                                <Col >
+                                                    <FormGroup>
+                                                        <Label for="startTime">Start</Label>
+                                                        <select style={{ width: '100%' }} name="startTime"
+                                                            onChange={(e) => this.handleChange(e, i, "monday")} >
+                                                            <option>Select Start Time</option>
+                                                            {optionList}
+                                                        </select>
+                                                    </FormGroup>
+                                                </Col>
+                                                <Col >
+                                                    <FormGroup>
+                                                        <Label for="endTime">End</Label>
+                                                        <select style={{ width: '100%' }} name="endTime"
+                                                            onChange={(e) => this.handleChange(e, i, "monday")} >
+                                                            <option>Select End Time</option>
+                                                            {optionList}
+                                                        </select>
+                                                    </FormGroup>
+                                                </Col>
+                                                <Button onClick={(e) => this.deleteInput(e, i, "monday")}>Delete</Button>
+                                            </Row>
+                                        )
+                                    })}
+                                    {this.state.errors && (
+                                        <small style={{ color: "red" }}>
+                                            {this.state.errors.monday}
+                                        </small>
+                                    )}
+                                </FormGroup>
+                            </Row>
+                            <Row form>
+                                <FormGroup>
+                                    <h2>Tuesday</h2>
+                                    <Button type="submit" onClick={(e) => this.addInput(e, "tuesday")}>Add</Button>
+                                    <hr />
+                                    {this.state.days.tuesday.map((item, i) => {
+                                        return (
+                                            <Row key={i}>
+                                                <Col >
+                                                    <FormGroup>
+                                                        <Label for="startTime">Start</Label>
+                                                        <select style={{ width: '100%' }} name="startTime"
+                                                            onChange={(e) => this.handleChange(e, i, "tuesday")} >
+                                                            <option>Select Start Time</option>
+                                                            {optionList}
+                                                        </select>
+                                                    </FormGroup>
+                                                </Col>
+                                                <Col >
+                                                    <FormGroup>
+                                                        <Label for="endTime">End</Label>
+                                                        <select style={{ width: '100%' }} name="endTime"
+                                                            onChange={(e) => this.handleChange(e, i, "tuesday")} >
+                                                            <option>Select End Time</option>
+                                                            {optionList}
+                                                        </select>
+                                                    </FormGroup>
+                                                </Col>
+                                                <Button type="submit" onClick={(e) => this.deleteInput(e, i, "tuesday")}>Delete</Button>
+                                            </Row>
+                                        )
+                                    })}
+                                    {this.state.errors && (
+                                        <small style={{ color: "red" }}>
+                                            {this.state.errors.tuesday}
+                                        </small>
+                                    )}
+                                </FormGroup>
+                            </Row>
+                            <Row form>
+                                <FormGroup>
+                                    <h2>Wednesday</h2>
+                                    <Button type="submit" onClick={(e) => this.addInput(e, "wednesday")}>Add</Button>
+                                    <hr />
+                                    {this.state.days.wednesday.map((item, i) => {
+                                        return (
+                                            <Row key={i}>
+                                                <Col >
+                                                    <FormGroup>
+                                                        <Label for="startTime">Start</Label>
+                                                        <select style={{ width: '100%' }} name="startTime"
+                                                            onChange={(e) => this.handleChange(e, i, "wednesday")} >
+                                                            <option>Select Start Time</option>
+                                                            {optionList}
+                                                        </select>
+                                                    </FormGroup>
+                                                </Col>
+                                                <Col >
+                                                    <FormGroup>
+                                                        <Label for="endTime">End</Label>
+                                                        <select style={{ width: '100%' }} name="endTime"
+                                                            onChange={(e) => this.handleChange(e, i, "wednesday")}>
+                                                            <option>Select End Time</option>
+                                                            {optionList}
+                                                        </select>
+                                                    </FormGroup>
+                                                </Col>
+                                                <Button type="submit" onClick={(e) => this.deleteInput(e, i, "wednesday")}>Delete</Button>
+                                            </Row>
+                                        )
+                                    })}
+                                    {this.state.errors && (
+                                        <small style={{ color: "red" }}>
+                                            {this.state.errors.wednesday}
+                                        </small>
+                                    )}
+                                </FormGroup>
+                            </Row>
+                            <Row form>
+                                <FormGroup>
+                                    <h2>Thursday</h2>
+                                    <Button type="submit" onClick={(e) => this.addInput(e, "thursday")}>Add</Button>
+                                    <hr />
+                                    {this.state.days.thursday.map((item, i) => {
+                                        return (
+                                            <Row key={i}>
+                                                <Col >
+                                                    <FormGroup>
+                                                        <Label for="startTime">Start</Label>
+                                                        <select style={{ width: '100%' }} name="startTime"
+                                                            onChange={(e) => this.handleChange(e, i, "thursday")} >
+                                                            <option>Select Start Time</option>
+                                                            {optionList}
+                                                        </select>
+                                                    </FormGroup>
+                                                </Col>
+                                                <Col >
+                                                    <FormGroup>
+                                                        <Label for="endTime">End</Label>
+                                                        <select style={{ width: '100%' }} name="endTime"
+                                                            onChange={(e) => this.handleChange(e, i, "thursday")} >
+                                                            <option>Select End Time</option>
+                                                            {optionList}
+                                                        </select>
+                                                    </FormGroup>
+                                                </Col>
+                                                <Button type="submit" onClick={(e) => this.deleteInput(e, i, "thursday")}>Delete</Button>
+                                            </Row>
+                                        )
+                                    })}
+                                    {this.state.errors && (
+                                        <small style={{ color: "red" }}>
+                                            {this.state.errors.thursday}
+                                        </small>
+                                    )}
+                                </FormGroup>
+                            </Row>
+                            <Row form>
+                                <FormGroup>
+                                    <h2>Friday</h2>
+                                    <Button type="submit" onClick={(e) => this.addInput(e, "friday")}>Add</Button>
+                                    <hr />
+                                    {this.state.days.friday.map((item, i) => {
+                                        return (
+                                            <Row key={i}>
+                                                <Col >
+                                                    <FormGroup>
+                                                        <Label for="startTime">Start</Label>
+                                                        <select style={{ width: '100%' }} name="startTime"
+                                                            onChange={(e) => this.handleChange(e, i, "friday")} >
+                                                            <option>Select Start Time</option>
+                                                            {optionList}
+                                                        </select>
+                                                    </FormGroup>
+                                                </Col>
+                                                <Col >
+                                                    <FormGroup>
+                                                        <Label for="endTime">End</Label>
+                                                        <select style={{ width: '100%' }} name="endTime"
+                                                            onChange={(e) => this.handleChange(e, i, "friday")} >
+                                                            <option>Select End Time</option>
+                                                            {optionList}
+                                                        </select>
+                                                    </FormGroup>
+                                                </Col>
+                                                <Button type="submit" onClick={(e) => this.deleteInput(e, i, "friday")}>Delete</Button>
+                                            </Row>
+                                        )
+                                    })}
+                                    {this.state.errors && (
+                                        <small style={{ color: "red" }}>
+                                            {this.state.errors.friday}
+                                        </small>
+                                    )}
+                                </FormGroup>
+                            </Row>
+                            <Row form>
+                                <FormGroup>
+                                    <h2>Saturday</h2>
+                                    <Button type="submit" onClick={(e) => this.addInput(e, "saturday")}>Add</Button>
+                                    <hr />
+                                    {this.state.days.saturday.map((item, i) => {
+                                        return (
+                                            <Row key={i}>
+                                                <Col >
+                                                    <FormGroup>
+                                                        <Label for="startTime">Start</Label>
+                                                        <select style={{ width: '100%' }} name="startTime"
+                                                            onChange={(e) => this.handleChange(e, i, "saturday")} >
+                                                            <option>Select Start Time</option>
+                                                            {optionList}
+                                                        </select>
+                                                    </FormGroup>
+                                                </Col>
+                                                <Col >
+                                                    <FormGroup>
+                                                        <Label for="endTime">End</Label>
+                                                        <select style={{ width: '100%' }} name="endTime"
+                                                            onChange={(e) => this.handleChange(e, i, "saturday")} >
+                                                            <option>Select End Time</option>
+                                                            {optionList}
+                                                        </select>
+                                                    </FormGroup>
+                                                </Col>
+                                                <Button type="submit" onClick={(e) => this.deleteInput(e, i, "saturday")}>Delete</Button>
+                                            </Row>
+                                        )
+                                    })}
+                                    {this.state.errors && (
+                                        <small style={{ color: "red" }}>
+                                            {this.state.errors.saturday}
+                                        </small>
+                                    )}
+                                </FormGroup>
+                            </Row>
+                            <Row form>
+                                <FormGroup>
+                                    <h2>Sunday</h2>
+                                    <Button type="submit" onClick={(e) => this.addInput(e, "sunday")}>Add</Button>
+                                    <hr /><hr />
+                                    {this.state.days.sunday.map((item, i) => {
+                                        return (
+                                            <Row key={i}>
+                                                <Col >
+                                                    <FormGroup>
+                                                        <Label for="startTime">Start</Label>
+                                                        <select style={{ width: '100%' }} name="startTime"
+                                                            onChange={(e) => this.handleChange(e, i, "sunday")} >
+                                                            <option>Select Start Time</option>
+                                                            {optionList}
+                                                        </select>
+                                                    </FormGroup>
+                                                </Col>
+                                                <Col >
+                                                    <FormGroup>
+                                                        <Label for="endTime">End</Label>
+                                                        <select style={{ width: '100%' }} name="endTime"
+                                                            onChange={(e) => this.handleChange(e, i, "sunday")} >
+                                                            <option>Select End Time</option>
+                                                            {optionList}
+                                                        </select>
+                                                    </FormGroup>
+                                                </Col>
+                                                <Button type="submit" onClick={(e) => this.deleteInput(e, i, "sunday")}>Delete</Button>
+                                            </Row>
+                                        )
+                                    })}
+                                    {this.state.errors && (
+                                        <small style={{ color: "red" }}>
+                                            {this.state.errors.sunday}
+                                        </small>
+                                    )}
+                                </FormGroup>
+                            </Row>
+                            <Button type="submit">Save</Button>
+                        </Form>
+                    </div>
                 </div>
-            </div>
-        </React.Fragment>
+            </React.Fragment>
         )
     }
 }

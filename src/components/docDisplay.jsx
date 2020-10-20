@@ -1,61 +1,19 @@
 import React from 'react';
 import { Row, Col, Table } from 'reactstrap';
 
-const DocDisplay = () => {
+export const DocDisplay = ({doc}) => {
 
     //Fetch Data From Redux-Store and Display Here
-
-    return (
-        <div className="mt-4" >
-            <Col className="text-center">
-                <hr/><hr/>
-                <h1>Doctor Table :</h1>
-                <hr/><hr/>
-            </Col>
-            <Row>
-                <Col>
-                    {/* Creating the Doctor's Table */}
-                    <Table>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Speciality</th>
-                                <th>Experience</th>
-                                <th>Fees</th>
-                                <th>Qualifications</th>
-                                <th>Location</th>
-                                <th>Languages</th>
-                                <th>Email</th>
-                                <th>Number</th>
-                                <th>Gender</th>
-                                <th>Registration Number</th>
-                                <th>Specialization</th>
-                                <th>Super-Specialization</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th>ABC</th>
-                                <th>ABC</th>
-                                <th>ABC</th>
-                                <th>ABC</th>
-                                <th>ABC</th>
-                                <th>ABC</th>
-                                <th>ABC</th>
-                                <th>ABC</th>
-                                <th>ABC</th>
-                                <th>ABC</th>
-                                <th>ABC</th>
-                                <th>ABC</th>
-                                <th>ABC</th>
-                            </tr>
-                        </tbody>
-                    </Table>
-                </Col>
-            </Row>
-        </div>
-
+    return(
+        <tr>
+            <td>{doc.name}</td>
+            <td>{doc.email}</td>
+            <td>{doc.phone}</td>
+            <td>{doc.practising}</td>
+            <td>{doc.speciality}</td>
+            <td>{doc.fees}</td>
+            <td>{doc.experience}</td>
+            <td>Active</td>
+        </tr>
     )
 }
-
-export default DocDisplay;

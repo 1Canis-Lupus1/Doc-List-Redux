@@ -8,11 +8,14 @@ import AddDetails from './components/docForm';
 import AddTiming from './components/docTiming'; 
 import Details from './components/docDetails';
 import {AddNewDoc} from './components/addNewDoc';
+import DocDisplayTable from './components/docDisplayTable';
 
 class App extends Component {
   render(){
   return (
     <Provider store={store}>
+      <hr/>
+      <h2>Route to New Doctor: "/addDocForm" (Button to be added)</h2>
       <Router>
         <PersistGate persistor={persistor}>
         <div className="App">
@@ -21,7 +24,7 @@ class App extends Component {
             <Route path="/addDocDetails" component={AddNewDoc} />
             <Route path="/addDocForm" component={AddDetails} />
             <Route path="/addDocTime" component={AddTiming} />
-            {/* <Route path="/showDocList" component={NewDoctorTable} /> */}
+            <Route path="/showDocList" component={DocDisplayTable} />
           </Switch>
         </div>
         </PersistGate>
