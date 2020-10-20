@@ -74,28 +74,27 @@ export const formDataReducer = (
         case ADD_TABLE: {
             doctorState.DoctorData.push(action.payload.data)
             doctorState.user = {
-                name: "",
-                experience: "",
-                fees: "",
-                qualification: "",
-                practising: "",
-                language: [],
-                email: "",
-                phone: "",
-                medicalNo: "",
-                graduation: "",
-                specialization: "",
-                superSpecialization: "",
-                gender: "",
-                speciality: "",
-                availability: {
-                    Monday: [],
-                    Tuesday: [],
-                    Wednesday: [],
-                    Thursday: [],
-                    Friday: [],
-                    Saturday: [],
-                    Sunday: []
+            name: "",
+            experience: "",
+            fees: "",
+            qualification: "",
+            location: "",
+            language: [],
+            email: "",
+            phone: "",
+            regno: "",
+            gender: "",
+            speciality: "",
+            specialization: "",
+            superSpecialization: "",
+            availability: {
+                Monday: [],
+                Tuesday: [],
+                Wednesday: [],
+                Thursday: [],
+                Friday: [],
+                Saturday: [],
+                Sunday: []
                 }
             }
             break;

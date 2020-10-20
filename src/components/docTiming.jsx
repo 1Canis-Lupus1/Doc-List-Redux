@@ -778,6 +778,7 @@ class AddTiming extends Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log("Formstate:",state)
     return {
         formState: state
     };
