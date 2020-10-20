@@ -1,0 +1,20 @@
+.logo {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 10vh;
+    background-color: rgb(98, 212, 250);
+    color: white;
+}
+
+.link {
+   width: 40%;
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+   list-style: none;
+}
+
+.docDisplay {
+    color: rgb(15, 14, 14);
+}

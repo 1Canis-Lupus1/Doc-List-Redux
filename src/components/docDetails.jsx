@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { docData } from '../http/http-calls';
-import { Row, Col, Table } from 'reactstrap';
+import { Row, Col, Table, Button} from 'reactstrap';
+import {Redirect} from 'react-router-dom';
 
 class Details extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            details: []
+            details: [],
+            redirect: false
         }
     }
 
@@ -23,9 +25,13 @@ class Details extends Component {
             })
 
     }
+
     render() {
         return (
             <React.Fragment>
+                {this.state.redirect ? <Redirect to={{
+                    pathname: '/addDocForm'
+                }} /> : ''}
                 <Col className="text-center">
                     <hr/><hr/>
                     <h1>Doctor Details :</h1>
@@ -67,12 +73,7 @@ class Details extends Component {
                         </Table>
                     </Col>
                 </Row>
-                {/* <ol>
-                    {this.state.details.map((item) => {
-                        return <li>{item.name?.full}</li>
-                    })}
-
-                </ol> */}
+                <Button onClick={()=>this.setState({redirect: true})}>Add New Doctor</Button>
             </React.Fragment>
         )
     }

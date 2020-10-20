@@ -486,7 +486,7 @@ class AddTiming extends Component {
             <React.Fragment>
                 <div className="timingForm">
                     {this.state.redirect ? <Redirect to={{
-                        pathname: '/dispalyDocDetails'
+                        pathname: '/showDocList'
                     }} /> : ''}
                     <Col className="text-center">
                         <hr /><hr />
@@ -768,7 +768,7 @@ class AddTiming extends Component {
                                     )}
                                 </FormGroup>
                             </Row>
-                            <Button type="submit">Save</Button>
+                            <Button type="submit">SAVE DATA</Button>
                         </Form>
                     </div>
                 </div>
