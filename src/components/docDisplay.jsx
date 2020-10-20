@@ -9,7 +9,7 @@ export const DocDisplay = ({doc}) => {
             <td>{doc.name}</td>
             <td>{doc.email}</td>
             <td>{doc.phone}</td>
-            <td>{doc.practising}</td>
+            <td>{doc.location}</td>
             <td>{doc.speciality}</td>
             <td>{doc.fees}</td>
             <td>{doc.experience}</td>

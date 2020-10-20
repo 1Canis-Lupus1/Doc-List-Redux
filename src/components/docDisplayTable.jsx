@@ -15,7 +15,7 @@ const DocDisplayTable=()=>{
                         <th>Name</th>
                         <th>Email</th>
                         <th>Phone</th>
-                        <th>Practising At</th>
+                        <th>Location</th>
                         <th>Speciality</th>
                         <th>Consult Fees</th>
                         <th>Experience</th>
@@ -23,9 +23,9 @@ const DocDisplayTable=()=>{
                     </tr>
                 </thead>
                 <tbody>
-                    {/* {stateData.DocList.map(doctor=>{
-                    <DocDisplay doc={doctor} key={doctor.phone} />
-                    })} */}
+                    {stateData.DocList.map(doctor=>{
+                     return(<DocDisplay doc={doctor} key={doctor.phone} />)
+                    })} 
                 </tbody>
             </Table>
         </React.Fragment>
