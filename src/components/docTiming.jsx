@@ -293,7 +293,7 @@ class AddTiming extends Component {
         return Object.keys(errors).length ? errors : null;
     }
 
-    addInput = (e, day) => {
+    addSelectField = (e, day) => {
         e.preventDefault()
         const selectBox = this.state.days[day];
         const newselectBox = [...selectBox, { startTime: "", endTime: "" }]
@@ -498,7 +498,7 @@ class AddTiming extends Component {
                             <Row form>
                                 <FormGroup>
                                     <h2>Monday</h2>
-                                    <Button onClick={(e) => this.addInput(e, "monday")}>Add</Button>
+                                    <Button onClick={(e) => this.addSelectField(e, "monday")}>Add</Button>
                                     <hr />
                                     {this.state.days.monday.map((item, i) => {
                                         return (
@@ -537,7 +537,7 @@ class AddTiming extends Component {
                             <Row form>
                                 <FormGroup>
                                     <h2>Tuesday</h2>
-                                    <Button type="submit" onClick={(e) => this.addInput(e, "tuesday")}>Add</Button>
+                                    <Button type="submit" onClick={(e) => this.addSelectField(e, "tuesday")}>Add</Button>
                                     <hr />
                                     {this.state.days.tuesday.map((item, i) => {
                                         return (
@@ -576,7 +576,7 @@ class AddTiming extends Component {
                             <Row form>
                                 <FormGroup>
                                     <h2>Wednesday</h2>
-                                    <Button type="submit" onClick={(e) => this.addInput(e, "wednesday")}>Add</Button>
+                                    <Button type="submit" onClick={(e) => this.addSelectField(e, "wednesday")}>Add</Button>
                                     <hr />
                                     {this.state.days.wednesday.map((item, i) => {
                                         return (
@@ -615,7 +615,7 @@ class AddTiming extends Component {
                             <Row form>
                                 <FormGroup>
                                     <h2>Thursday</h2>
-                                    <Button type="submit" onClick={(e) => this.addInput(e, "thursday")}>Add</Button>
+                                    <Button type="submit" onClick={(e) => this.addSelectField(e, "thursday")}>Add</Button>
                                     <hr />
                                     {this.state.days.thursday.map((item, i) => {
                                         return (
@@ -654,7 +654,7 @@ class AddTiming extends Component {
                             <Row form>
                                 <FormGroup>
                                     <h2>Friday</h2>
-                                    <Button type="submit" onClick={(e) => this.addInput(e, "friday")}>Add</Button>
+                                    <Button type="submit" onClick={(e) => this.addSelectField(e, "friday")}>Add</Button>
                                     <hr />
                                     {this.state.days.friday.map((item, i) => {
                                         return (
@@ -693,7 +693,7 @@ class AddTiming extends Component {
                             <Row form>
                                 <FormGroup>
                                     <h2>Saturday</h2>
-                                    <Button type="submit" onClick={(e) => this.addInput(e, "saturday")}>Add</Button>
+                                    <Button type="submit" onClick={(e) => this.addSelectField(e, "saturday")}>Add</Button>
                                     <hr />
                                     {this.state.days.saturday.map((item, i) => {
                                         return (
@@ -732,7 +732,7 @@ class AddTiming extends Component {
                             <Row form>
                                 <FormGroup>
                                     <h2>Sunday</h2>
-                                    <Button type="submit" onClick={(e) => this.addInput(e, "sunday")}>Add</Button>
+                                    <Button type="submit" onClick={(e) => this.addSelectField(e, "sunday")}>Add</Button>
                                     <hr /><hr />
                                     {this.state.days.sunday.map((item, i) => {
                                         return (
