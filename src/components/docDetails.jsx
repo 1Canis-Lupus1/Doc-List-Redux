@@ -49,6 +49,7 @@ class Details extends Component {
                                     <th>Speciality</th>
                                     <th>Consult Fees</th>
                                     <th>Consults</th>
+                                    <th>Super-Speciality</th>
                                     <th>Schedule</th>
                                     <th>Status</th>
                                 </tr>
@@ -61,9 +62,10 @@ class Details extends Component {
                                         <th>{item.email}</th>
                                         <th>{item.phone}</th>
                                         <th>{item.location?.city}    </th>
-                                        <th>{item.speciality}</th>
+                                        <th>{item.specialty}</th>
                                         <th>{item.fee}</th>
                                         <th>{item.totalAppointment}</th>
+                                        <th>{item.superSpeciality}</th>
                                         <th>{item.registrationNumber}</th>
                                         <th>{item.isActive?"Active":"In-Active"}</th>
                                             </tr>
