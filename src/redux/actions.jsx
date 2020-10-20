@@ -1,4 +1,4 @@
-import {ADD_FORM,ADD_TIME} from './actionTypes';
+import {ADD_FORM,ADD_TIME,ADD_TABLE} from './actionTypes';
 
 export const addFormData=(content)=>({
     type: ADD_FORM,
@@ -9,6 +9,13 @@ export const addFormData=(content)=>({
 
 export const addTimeData=(content)=>({
     type: ADD_TIME,
+    payload:{
+        content
+    }
+})
+
+export const addTableData=(content)=>({
+    type: ADD_TABLE,
     payload:{
         content
     }
