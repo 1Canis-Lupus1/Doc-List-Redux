@@ -384,7 +384,7 @@ class AddTiming extends Component {
         }
     }
 
-    deleteInput = (e, index, day) => {
+    deleteSelectField = (e, index, day) => {
         e.preventDefault();
         const selectBox = this.state.days[day];
         const newselectBox = [...selectBox];
@@ -523,7 +523,7 @@ class AddTiming extends Component {
                                                         </select>
                                                     </FormGroup>
                                                 </Col>
-                                                <Button onClick={(e) => this.deleteInput(e, i, "monday")}>Delete</Button>
+                                                <Button onClick={(e) => this.deleteSelectField(e, i, "monday")}>Delete</Button>
                                             </Row>
                                         )
                                     })}
@@ -562,7 +562,7 @@ class AddTiming extends Component {
                                                         </select>
                                                     </FormGroup>
                                                 </Col>
-                                                <Button type="submit" onClick={(e) => this.deleteInput(e, i, "tuesday")}>Delete</Button>
+                                                <Button type="submit" onClick={(e) => this.deleteSelectField(e, i, "tuesday")}>Delete</Button>
                                             </Row>
                                         )
                                     })}
@@ -601,7 +601,7 @@ class AddTiming extends Component {
                                                         </select>
                                                     </FormGroup>
                                                 </Col>
-                                                <Button type="submit" onClick={(e) => this.deleteInput(e, i, "wednesday")}>Delete</Button>
+                                                <Button type="submit" onClick={(e) => this.deleteSelectField(e, i, "wednesday")}>Delete</Button>
                                             </Row>
                                         )
                                     })}
@@ -640,7 +640,7 @@ class AddTiming extends Component {
                                                         </select>
                                                     </FormGroup>
                                                 </Col>
-                                                <Button type="submit" onClick={(e) => this.deleteInput(e, i, "thursday")}>Delete</Button>
+                                                <Button type="submit" onClick={(e) => this.deleteSelectField(e, i, "thursday")}>Delete</Button>
                                             </Row>
                                         )
                                     })}
@@ -679,7 +679,7 @@ class AddTiming extends Component {
                                                         </select>
                                                     </FormGroup>
                                                 </Col>
-                                                <Button type="submit" onClick={(e) => this.deleteInput(e, i, "friday")}>Delete</Button>
+                                                <Button type="submit" onClick={(e) => this.deleteSelectField(e, i, "friday")}>Delete</Button>
                                             </Row>
                                         )
                                     })}
@@ -718,7 +718,7 @@ class AddTiming extends Component {
                                                         </select>
                                                     </FormGroup>
                                                 </Col>
-                                                <Button type="submit" onClick={(e) => this.deleteInput(e, i, "saturday")}>Delete</Button>
+                                                <Button type="submit" onClick={(e) => this.deleteSelectField(e, i, "saturday")}>Delete</Button>
                                             </Row>
                                         )
                                     })}
@@ -757,7 +757,7 @@ class AddTiming extends Component {
                                                         </select>
                                                     </FormGroup>
                                                 </Col>
-                                                <Button type="submit" onClick={(e) => this.deleteInput(e, i, "sunday")}>Delete</Button>
+                                                <Button type="submit" onClick={(e) => this.deleteSelectField(e, i, "sunday")}>Delete</Button>
                                             </Row>
                                         )
                                     })}
