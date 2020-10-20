@@ -99,7 +99,10 @@ class AddTiming extends Component {
                         errors.monday = "Fields should not be empty";
                     } else if (key.startTime > key.endTime) {
                         errors.monday = "Start time should always be less than End time!!";
-                    } else {
+                    }else if(key.startTime === key.endTime){
+                        errors.monday="Start time should always be less than End time!!"
+                    } 
+                    else {
                         if (days[val][index + 1]) {
                             if (days[val][index].endTime > days[val][index + 1].startTime) {
                                 errors.monday = 'ERROR';
@@ -127,7 +130,10 @@ class AddTiming extends Component {
                         errors.tuesday = "Fields should not be empty ";
                     } else if (key.startTime > key.endTime) {
                         errors.tuesday = "Start time should always be less than End time!!";
-                    } else {
+                    }else if(key.startTime === key.endTime){
+                        errors.tuesday="Start time should always be less than End time!!"
+                    } 
+                    else {
                         if (days[val][index + 1]) {
                             if (days[val][index].endTime > days[val][index + 1].startTime) {
                                 errors.tuesday = 'ERROR';
@@ -155,7 +161,10 @@ class AddTiming extends Component {
                         errors.wednesday = "Fields should not be empty ";
                     } else if (key.startTime > key.endTime) {
                         errors.wednesday = "Start time should always be less than End time!!";
-                    } else {
+                    }else if(key.startTime === key.endTime){
+                        errors.wednesday="Start time should always be less than End time!!"
+                    } 
+                    else {
                         if (days[val][index + 1]) {
                             if (days[val][index].endTime > days[val][index + 1].startTime) {
                                 errors.wednesday = 'ERROR';
@@ -183,7 +192,10 @@ class AddTiming extends Component {
                         errors.thursday = "Fields should not be empty ";
                     } else if (key.startTime > key.endTime) {
                         errors.thursday = "Start time should always be less than End time!!";
-                    } else {
+                    }else if(key.startTime === key.endTime){
+                        errors.thrusday="Start and End Time cannot be equal"
+                    } 
+                    else {
                         if (days[val][index + 1]) {
                             if (days[val][index].endTime > days[val][index + 1].startTime) {
                                 errors.thursday = 'ERROR';
@@ -211,7 +223,10 @@ class AddTiming extends Component {
                         errors.friday = "Fields should not be empty ";
                     } else if (key.startTime > key.endTime) {
                         errors.friday = "Start time should always be less than End time!!";
-                    } else {
+                    }else if(key.startTime === key.endTime){
+                        errors.friday="Start time should always be less than End time!!"
+                    } 
+                    else {
                         if (days[val][index + 1]) {
                             if (days[val][index].endTime > days[val][index + 1].startTime) {
                                 errors.friday = 'ERROR';
@@ -239,7 +254,10 @@ class AddTiming extends Component {
                         errors.saturday = "Fields should not be empty";
                     } else if (key.startTime > key.endTime) {
                         errors.saturday = "Start time should always be less than End time!!";
-                    } else {
+                    }else if(key.startTime === key.endTime){
+                        errors.saturday="Start time should always be less than End time!!"
+                    } 
+                    else {
                         if (days[val][index + 1]) {
                             if (days[val][index].endTime > days[val][index + 1].startTime) {
                                 errors.saturday = 'ERROR';
@@ -267,7 +285,10 @@ class AddTiming extends Component {
                         errors.sunday = "Fields should not be empty ";
                     } else if (key.startTime > key.endTime) {
                         errors.sunday = "Start time should always be less than End time!!";
-                    } else {
+                    }else if(key.startTime === key.endTime){
+                        errors.sunday="Start time should always be less than End time!!"
+                    } 
+                    else {
                         if (days[val][index + 1]) {
                             if (days[val][index].endTime > days[val][index + 1].startTime) {
                                 errors.sunday = 'ERROR';

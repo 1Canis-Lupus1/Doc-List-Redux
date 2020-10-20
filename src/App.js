@@ -7,7 +7,6 @@ import {PersistGate} from 'redux-persist/integration/react';
 import AddDetails from './components/docForm';
 import AddTiming from './components/docTiming'; 
 import Details from './components/docDetails';
-import {AddNewDoc} from './components/addNewDoc';
 import DocDisplayTable from './components/docDisplayTable';
 import Navigation from './components/Nav';
 
