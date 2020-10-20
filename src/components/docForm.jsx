@@ -93,13 +93,13 @@ class AddDetails extends Component {
         Object.keys(doctor).forEach((each) => {
             if (each === "name" && isTrue.name) {
                 if (!doctor.name.trim().length) {
-                    errorMsg.name = "*Required";
+                    errorMsg.name = "*Field Cannot Be Empty";
                 } else if (doctor.name.trim().length &&
                     !doctor.name.match(/^[a-zA-Z ]*$/)
                 ) {
-                    errorMsg.name = "Invalid name format";
+                    errorMsg.name = "Invalid Doctor Name";
                 } else if (doctor.name.trim().length <= 3) {
-                    errorMsg.name = "Name should be greater than 3 characters";
+                    errorMsg.name = "Name too small";
                 }
                 else {
                     delete errorMsg[each];
@@ -107,92 +107,92 @@ class AddDetails extends Component {
                 }
             } else if (each === "experience" && isTrue.experience) {
                 if (!doctor.experience.trim().length) {
-                    errorMsg.experience = "*Required";
+                    errorMsg.experience = "*Field Cannot Be Empty";
                 } else if (!doctor.experience.match(/^[0-9]{1,2}$/)) {
-                    errorMsg.experience = "Enter valid experience in years";
+                    errorMsg.experience = "Enter experience (0-99)";
                 } else {
                     delete errorMsg[each];
                     isTrue.experience = false;
                 }
             } else if (each === "fees" && isTrue.fees) {
                 if (!doctor.fees.trim().length) {
-                    errorMsg.fees = "*Required";
-                } else if (!doctor.fees.match(/^[0-9]{4}$/)) {
-                    errorMsg.fees = "Enter valid amount";
+                    errorMsg.fees = "*Field Cannot Be Empty";
+                } else if (!doctor.fees.match(/^[0-9]{3,4,5}$/)) {
+                    errorMsg.fees = "Enter valid fees";
                 } else {
                     delete errorMsg[each];
                     isTrue.fees = false;
                 }
             } else if (each === "qualification" && isTrue.qualification) {
                 if (!doctor.qualification.trim().length) {
-                    errorMsg.qualification = "*Required";
+                    errorMsg.qualification = "*Field Cannot Be Empty";
                 } else {
                     delete errorMsg[each];
                     isTrue.qualification = false;
                 }
             } else if (each === "location" && isTrue.location) {
                 if (!doctor.location.trim().length) {
-                    errorMsg.location = "*Required";
+                    errorMsg.location = "*Field Cannot Be Empty";
                 } else {
                     delete errorMsg[each];
                     isTrue.location = false;
                 }
             } else if (each === "email" && isTrue.email) {
                 if (!doctor.email.trim().length) {
-                    errorMsg.email = "*Required";
+                    errorMsg.email = "*Field Cannot Be Empty";
                 } else if (!doctor.email.match(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i)) {
-                    errorMsg.email = "Invalid Email";
+                    errorMsg.email = "Enter valid email";
                 } else {
                     delete errorMsg[each];
                     isTrue.email = false;
                 }
             } else if (each === "phone" && isTrue.phone) {
                 if (!doctor.phone.trim().length) {
-                    errorMsg.phone = "*Required";
+                    errorMsg.phone = "*Field Cannot Be Empty";
                 } else if (!doctor.phone.match(/^[0-9]{10}$/)) {
-                    errorMsg.phone = "Enter valid phone number";
+                    errorMsg.phone = "Enter valid number";
                 } else {
                     delete errorMsg[each];
                     isTrue.phone = false;
                 }
             } else if (each === "regno" && isTrue.regno) {
                 if (!doctor.regno.trim().length) {
-                    errorMsg.regno = "*Required";
+                    errorMsg.regno = "*Field Cannot Be Empty";
                 } else {
                     delete errorMsg[each];
                     isTrue.regno = false;
                 }
             } else if (each === "specialization" && isTrue.specialization) {
                 if (!doctor.specialization.trim().length) {
-                    errorMsg.specialization = "*Required";
+                    errorMsg.specialization = "*Field Cannot Be Empty";
                 } else {
                     delete errorMsg[each];
                     isTrue.specialization = false;
                 }
             } else if (each === "superSpecialization" && isTrue.superSpecialization) {
                 if (!doctor.superSpecialization.trim().length) {
-                    errorMsg.superSpecialization = "*Required";
+                    errorMsg.superSpecialization = "*Field Cannot Be Empty";
                 } else {
                     delete errorMsg[each];
                     isTrue.superSpecialization = false;
                 }
             } else if (each === "speciality" && isTrue.speciality) {
                 if (doctor.speciality === "") {
-                    errorMsg.speciality = "*Required";
+                    errorMsg.speciality = "*Field Cannot Be Empty";
                 } else {
                     delete errorMsg[each];
                     isTrue.speciality = false;
                 }
             } else if (each === "gender" && isTrue.gender) {
                 if (doctor.gender === "") {
-                    errorMsg.gender = "*Required";
+                    errorMsg.gender = "*Field Cannot Be Empty";
                 } else {
                     delete errorMsg[each];
                     isTrue.gender = false;
                 }
             } else if (each === "language" && isTrue.language) {
                 if (!doctor.language.length) {
-                    errorMsg.language = "*Required atleast one language";
+                    errorMsg.language = "*Language cannot be empty";
                 } else {
                     delete errorMsg[each];
                     isTrue.language = false;
@@ -219,9 +219,9 @@ class AddDetails extends Component {
                         <Row form>
                             <Col >
                                 <FormGroup>
-                                    <Label for="fullName">Name</Label>
-                                    <Input type="text" name="fullName" id="fullName"
-                                        placeholder="Enter full name"
+                                    <Label for="name">Name</Label>
+                                    <Input type="text" name="name" id="name"
+                                        placeholder="Enter Name"
                                         value={this.state.doctor.name}
                                         onChange={(e) => this.handleChange('name', e.target.value)}
                                     />
@@ -236,25 +236,20 @@ class AddDetails extends Component {
                                 <FormGroup>
                                     <Label for="speciality">Speciality</Label>
                                     <Row form>
-                                        <select style={{ marginLeft: "60px", height: "30px", width: "300px" }}
+                                        <select style={{height: "38px", width: "300px" }}
                                             value={this.state.doctor.speciality}
-                                            onChange={(e) => this.handleChange("speciality", e.target.value)}
-                                        >
+                                            onChange={(e) => this.handleChange("speciality", e.target.value)}>
                                             <option></option>
-                                            <option value="Dermatologists">Dermatologists</option>
-                                            <option value="General Surgeons">General Surgeons</option>
+                                            <option value="psychiatrist">Psychiatrist</option>
+                                            <option value="Endocrinologist">Endocrinologist</option>
+                                            <option value="Urologist">Urologist</option>
                                             <option value="Cardiology">Cardiology</option>
-                                            <option value="Endocrinologists">Endocrinologists</option>
-                                            <option value="Gastroenterologists">Gastroenterologists</option>
-                                            <option value="Urologists">Urologists</option>
+                                            <option value="Dermatologist">Dermatologist</option>
+                                            <option value="Gastroenterologist">Gastroenterologist</option>
+                                            <option value="General Surgeon">General Surgeon</option>
                                             <option value="Gynaecology">Gynaecology</option>
                                             <option value="Pediatrician">Pediatrician</option>
                                             <option value="Orthopedic">Orthopedic</option>
-                                            <option value="optho">optho</option>
-                                            <option value="psychiatrist">psychiatrist</option>
-                                            <option value="dietiance">dietiance</option>
-                                            <option value="fcece">fcece</option>
-                                            <option value="Test">Test</option>
                                         </select>
                                         {this.state.errorMsg && (
                                             <small style={{ color: "red" }}>
@@ -269,7 +264,7 @@ class AddDetails extends Component {
                             <Col >
                                 <FormGroup>
                                     <Label for="experience">Experience</Label>
-                                    <Input type="number" name="experience" id="experience" placeholder="Enter experience in years"
+                                    <Input type="number" name="experience" id="experience" placeholder="Enter Experience"
                                         value={this.state.doctor.experience}
                                         onChange={(e) => this.handleChange('experience', e.target.value)}
                                     />
@@ -283,7 +278,7 @@ class AddDetails extends Component {
                             <Col >
                                 <FormGroup>
                                     <Label for="fees">Consult Fees</Label>
-                                    <Input type="number" name="fees" id="fees" placeholder="Enter fees"
+                                    <Input type="number" name="fees" id="fees" placeholder="Enter Consulting fees"
                                         value={this.state.doctor.fees}
                                         onChange={(e) => this.handleChange('fees', e.target.value)}
                                     />
@@ -299,7 +294,7 @@ class AddDetails extends Component {
                             <Col >
                                 <FormGroup>
                                     <Label for="qualification">Qualification</Label>
-                                    <Input type="text" name="qualification" id="qualification" placeholder="Enter qualification"
+                                    <Input type="text" name="qualification" id="qualification" placeholder="Enter Qualification"
                                         value={this.state.doctor.qualification}
                                         onChange={(e) => this.handleChange('qualification', e.target.value)}
                                     />
@@ -312,8 +307,8 @@ class AddDetails extends Component {
                             </Col>
                             <Col >
                                 <FormGroup>
-                                    <Label for="location">location At</Label>
-                                    <Input type="text" name="location" id="location" placeholder="Enter location at"
+                                    <Label for="location">Location</Label>
+                                    <Input type="text" name="location" id="location" placeholder="Enter Location"
                                         value={this.state.doctor.location}
                                         onChange={(e) => this.handleChange('location', e.target.value)}
                                     />
@@ -411,33 +406,6 @@ class AddDetails extends Component {
                                         <Label for="tamil" check>Tamil</Label>
                                     </FormGroup>
                                 </Col>
-                                <Col md={2}>
-                                    <FormGroup check>
-                                        <Input type="checkbox"
-                                            value="Punjabi"
-                                            onChange={(e) => this.handleChange('language', e.target)}
-                                        />
-                                        <Label for="punjabi" check>Punjabi</Label>
-                                    </FormGroup>
-                                </Col>
-                                <Col md={2}>
-                                    <FormGroup check>
-                                        <Input type="checkbox"
-                                            value="Malayalam"
-                                            onChange={(e) => this.handleChange('language', e.target)}
-                                        />
-                                        <Label for="malayalam" check>Malayalam</Label>
-                                    </FormGroup>
-                                </Col>
-                                <Col md={2}>
-                                    <FormGroup check>
-                                        <Input type="checkbox"
-                                            value="Kannada"
-                                            onChange={(e) => this.handleChange('language', e.target)}
-                                        />
-                                        <Label for="kannada" check>Kannada</Label>
-                                    </FormGroup>
-                                </Col>
                                 {this.state.errorMsg && (
                                     <small style={{ color: "red" }}>
                                         {this.state.errorMsg.language}
@@ -449,7 +417,7 @@ class AddDetails extends Component {
                             <Col >
                                 <FormGroup>
                                     <Label for="email">Email</Label>
-                                    <Input type="email" name="email" id="email" placeholder="Enter email"
+                                    <Input type="email" name="email" id="email" placeholder="Enter Email-Id"
                                         value={this.state.doctor.email}
                                         onChange={(e) => this.handleChange('email', e.target.value)}
                                     />
@@ -462,8 +430,8 @@ class AddDetails extends Component {
                             </Col>
                             <Col >
                                 <FormGroup>
-                                    <Label for="phone">Phone</Label>
-                                    <Input type="number" name="phone" id="phone" placeholder="Enter phone number"
+                                    <Label for="phone">Contact</Label>
+                                    <Input type="number" name="phone" id="phone" placeholder="Enter Contact Number"
                                         value={this.state.doctor.phone}
                                         onChange={(e) => this.handleChange('phone', e.target.value)}
                                     />
@@ -493,12 +461,20 @@ class AddDetails extends Component {
                                                 <Label for="male">Male</Label>
                                             </div>
                                         </Col>
-                                        <Col md={2} style={{ paddingLeft: "80px" }}>
+                                        <Col md={2} style={{ paddingLeft: "40px" }}>
                                             <div>
                                                 <Input type="radio" value="Female" name="gender"
                                                     onChange={(e) => this.handleChange('gender', e.target.value)}
                                                 />
                                                 <Label for="female">Female</Label>
+                                            </div>
+                                        </Col>
+                                        <Col md={2} style={{ paddingLeft: "80px" }}>
+                                            <div>
+                                                <Input type="radio" value="Others" name="gender"
+                                                    onChange={(e) => this.handleChange('gender', e.target.value)}
+                                                />
+                                                <Label for="Others">Others</Label>
                                             </div>
                                         </Col>
                                     </Row>

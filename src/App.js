@@ -1,37 +1,33 @@
 import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-import DocForm from './components/docForm';
-import Details from './components/docDetails';
-import {Button} from 'reactstrap';
 import {Provider} from 'react-redux';
 import {store,persistor} from "./redux/store";
 import {PersistGate} from 'redux-persist/integration/react';
+import AddDetails from './components/docForm';
+import AddTiming from './components/docTiming'; 
+import Details from './components/docDetails';
+import {AddNewDoc} from './components/addNewDoc';
 
 class App extends Component {
   render(){
   return (
     <Provider store={store}>
-      <div className="container mt-4">
       <Router>
         <PersistGate persistor={persistor}>
-            <Details />
-            <Button><Link path="/form" to="form">Add New Doctor</Link></Button>
+        <div className="App">
+          <Details />
           <Switch>
-            <Route path="/form" component={()=>(<DocForm />)} />
+            <Route path="/addDocDetails" component={AddNewDoc} />
+            <Route path="/addDocForm" component={AddDetails} />
+            <Route path="/addDocTime" component={AddTiming} />
+            {/* <Route path="/showDocList" component={NewDoctorTable} /> */}
           </Switch>
+        </div>
         </PersistGate>
       </Router>
-      </div>
-    </Provider>
+    </Provider >
   );
 }}
-
-// const mapStateToProps=state=>{
-//   return{
-//     docData: state.docData
-//   }
-//   console.log("Data From Store:",this.props.docData)
-// }
 
 export default App;
