@@ -96,11 +96,12 @@ class AddTiming extends Component {
             if (val === "monday" && isTrue.monday) {
                 days[val].forEach((key, index) => {
                     if (key.startTime === "" || key.endTime === "") {
-                        errors.monday = "Fields should not be empty";
+                        errors.monday = "*In-Valid Time Solt Selected";
                     } else if (key.startTime > key.endTime) {
                         errors.monday = "Start time should always be less than End time!!";
-                    }else if(key.startTime === key.endTime){
-                        errors.monday="Start time should always be less than End time!!"
+                    }
+                    else if(key.startTime === key.endTime){
+                        errors.monday="*Time Solts cannot be equal"
                     } 
                     else {
                         if (days[val][index + 1]) {
@@ -127,11 +128,11 @@ class AddTiming extends Component {
             else if (val === "tuesday" && isTrue.tuesday) {
                 days[val].forEach((key, index) => {
                     if (key.startTime === "" || key.endTime === "") {
-                        errors.tuesday = "Fields should not be empty ";
+                        errors.tuesday = "*In-Valid Time Solt Selected";
                     } else if (key.startTime > key.endTime) {
                         errors.tuesday = "Start time should always be less than End time!!";
                     }else if(key.startTime === key.endTime){
-                        errors.tuesday="Start time should always be less than End time!!"
+                        errors.tuesday="*Time Solts cannot be equal"
                     } 
                     else {
                         if (days[val][index + 1]) {
@@ -158,11 +159,11 @@ class AddTiming extends Component {
             else if (val === "wednesday" && isTrue.wednesday) {
                 days[val].forEach((key, index) => {
                     if (key.startTime === "" || key.endTime === "") {
-                        errors.wednesday = "Fields should not be empty ";
+                        errors.wednesday = "*In-Valid Time Solt Selected";
                     } else if (key.startTime > key.endTime) {
                         errors.wednesday = "Start time should always be less than End time!!";
                     }else if(key.startTime === key.endTime){
-                        errors.wednesday="Start time should always be less than End time!!"
+                        errors.wednesday="*Time Solts cannot be equal"
                     } 
                     else {
                         if (days[val][index + 1]) {
@@ -189,7 +190,7 @@ class AddTiming extends Component {
             else if (val === "thursday" && isTrue.thursday) {
                 days[val].forEach((key, index) => {
                     if (key.startTime === "" || key.endTime === "") {
-                        errors.thursday = "Fields should not be empty ";
+                        errors.thursday = "*In-Valid Time Solt Selected";
                     } else if (key.startTime > key.endTime) {
                         errors.thursday = "Start time should always be less than End time!!";
                     }else if(key.startTime === key.endTime){
@@ -220,11 +221,11 @@ class AddTiming extends Component {
             else if (val === "friday" && isTrue.friday) {
                 days[val].forEach((key, index) => {
                     if (key.startTime === "" || key.endTime === "") {
-                        errors.friday = "Fields should not be empty ";
+                        errors.friday = "*In-Valid Time Solt Selected";
                     } else if (key.startTime > key.endTime) {
                         errors.friday = "Start time should always be less than End time!!";
                     }else if(key.startTime === key.endTime){
-                        errors.friday="Start time should always be less than End time!!"
+                        errors.friday="*Time Solts cannot be equal"
                     } 
                     else {
                         if (days[val][index + 1]) {
@@ -255,7 +256,7 @@ class AddTiming extends Component {
                     } else if (key.startTime > key.endTime) {
                         errors.saturday = "Start time should always be less than End time!!";
                     }else if(key.startTime === key.endTime){
-                        errors.saturday="Start time should always be less than End time!!"
+                        errors.saturday="*Time Solts cannot be equal"
                     } 
                     else {
                         if (days[val][index + 1]) {
@@ -282,11 +283,11 @@ class AddTiming extends Component {
             else if (val === "sunday" && isTrue.sunday) {
                 days[val].forEach((key, index) => {
                     if (key.startTime === "" || key.endTime === "") {
-                        errors.sunday = "Fields should not be empty ";
+                        errors.sunday = "*In-Valid Time Solt Selected";
                     } else if (key.startTime > key.endTime) {
                         errors.sunday = "Start time should always be less than End time!!";
                     }else if(key.startTime === key.endTime){
-                        errors.sunday="Start time should always be less than End time!!"
+                        errors.sunday="*Time Solts cannot be equal"
                     } 
                     else {
                         if (days[val][index + 1]) {
@@ -529,7 +530,7 @@ class AddTiming extends Component {
                                                         <Label for="startTime">Start</Label>
                                                         <select style={{ width: '100%' }} name="startTime"
                                                             onChange={(e) => this.handleChange(e, i, "monday")} >
-                                                            <option>Select Start Time</option>
+                                                            
                                                             {optionList}
                                                         </select>
                                                     </FormGroup>
@@ -539,7 +540,7 @@ class AddTiming extends Component {
                                                         <Label for="endTime">End</Label>
                                                         <select style={{ width: '100%' }} name="endTime"
                                                             onChange={(e) => this.handleChange(e, i, "monday")} >
-                                                            <option>Select End Time</option>
+                                                            
                                                             {optionList}
                                                         </select>
                                                     </FormGroup>
@@ -568,7 +569,7 @@ class AddTiming extends Component {
                                                         <Label for="startTime">Start</Label>
                                                         <select style={{ width: '100%' }} name="startTime"
                                                             onChange={(e) => this.handleChange(e, i, "tuesday")} >
-                                                            <option>Select Start Time</option>
+                                                            
                                                             {optionList}
                                                         </select>
                                                     </FormGroup>
@@ -578,7 +579,7 @@ class AddTiming extends Component {
                                                         <Label for="endTime">End</Label>
                                                         <select style={{ width: '100%' }} name="endTime"
                                                             onChange={(e) => this.handleChange(e, i, "tuesday")} >
-                                                            <option>Select End Time</option>
+                                                            
                                                             {optionList}
                                                         </select>
                                                     </FormGroup>
@@ -607,7 +608,7 @@ class AddTiming extends Component {
                                                         <Label for="startTime">Start</Label>
                                                         <select style={{ width: '100%' }} name="startTime"
                                                             onChange={(e) => this.handleChange(e, i, "wednesday")} >
-                                                            <option>Select Start Time</option>
+                                                            
                                                             {optionList}
                                                         </select>
                                                     </FormGroup>
@@ -617,7 +618,7 @@ class AddTiming extends Component {
                                                         <Label for="endTime">End</Label>
                                                         <select style={{ width: '100%' }} name="endTime"
                                                             onChange={(e) => this.handleChange(e, i, "wednesday")}>
-                                                            <option>Select End Time</option>
+                                                            
                                                             {optionList}
                                                         </select>
                                                     </FormGroup>
@@ -646,7 +647,7 @@ class AddTiming extends Component {
                                                         <Label for="startTime">Start</Label>
                                                         <select style={{ width: '100%' }} name="startTime"
                                                             onChange={(e) => this.handleChange(e, i, "thursday")} >
-                                                            <option>Select Start Time</option>
+                                                            
                                                             {optionList}
                                                         </select>
                                                     </FormGroup>
@@ -656,7 +657,7 @@ class AddTiming extends Component {
                                                         <Label for="endTime">End</Label>
                                                         <select style={{ width: '100%' }} name="endTime"
                                                             onChange={(e) => this.handleChange(e, i, "thursday")} >
-                                                            <option>Select End Time</option>
+                                                            
                                                             {optionList}
                                                         </select>
                                                     </FormGroup>
@@ -685,7 +686,7 @@ class AddTiming extends Component {
                                                         <Label for="startTime">Start</Label>
                                                         <select style={{ width: '100%' }} name="startTime"
                                                             onChange={(e) => this.handleChange(e, i, "friday")} >
-                                                            <option>Select Start Time</option>
+                                                            
                                                             {optionList}
                                                         </select>
                                                     </FormGroup>
@@ -695,7 +696,7 @@ class AddTiming extends Component {
                                                         <Label for="endTime">End</Label>
                                                         <select style={{ width: '100%' }} name="endTime"
                                                             onChange={(e) => this.handleChange(e, i, "friday")} >
-                                                            <option>Select End Time</option>
+                                                            
                                                             {optionList}
                                                         </select>
                                                     </FormGroup>
@@ -724,7 +725,7 @@ class AddTiming extends Component {
                                                         <Label for="startTime">Start</Label>
                                                         <select style={{ width: '100%' }} name="startTime"
                                                             onChange={(e) => this.handleChange(e, i, "saturday")} >
-                                                            <option>Select Start Time</option>
+                                                            
                                                             {optionList}
                                                         </select>
                                                     </FormGroup>
@@ -734,7 +735,7 @@ class AddTiming extends Component {
                                                         <Label for="endTime">End</Label>
                                                         <select style={{ width: '100%' }} name="endTime"
                                                             onChange={(e) => this.handleChange(e, i, "saturday")} >
-                                                            <option>Select End Time</option>
+                                                            
                                                             {optionList}
                                                         </select>
                                                     </FormGroup>
@@ -763,7 +764,7 @@ class AddTiming extends Component {
                                                         <Label for="startTime">Start</Label>
                                                         <select style={{ width: '100%' }} name="startTime"
                                                             onChange={(e) => this.handleChange(e, i, "sunday")} >
-                                                            <option>Select Start Time</option>
+                                                            
                                                             {optionList}
                                                         </select>
                                                     </FormGroup>
@@ -773,7 +774,7 @@ class AddTiming extends Component {
                                                         <Label for="endTime">End</Label>
                                                         <select style={{ width: '100%' }} name="endTime"
                                                             onChange={(e) => this.handleChange(e, i, "sunday")} >
-                                                            <option>Select End Time</option>
+                                                            
                                                             {optionList}
                                                         </select>
                                                     </FormGroup>

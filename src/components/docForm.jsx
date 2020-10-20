@@ -219,7 +219,7 @@ class AddDetails extends Component {
                         <Row form>
                             <Col >
                                 <FormGroup>
-                                    <Label for="name">Name</Label>
+                                    <Label for="name"><strong>Name</strong></Label>
                                     <Input type="text" name="name" id="name"
                                         placeholder="Enter Name"
                                         value={this.state.doctor.name}
@@ -234,7 +234,7 @@ class AddDetails extends Component {
                             </Col>
                             <Col >
                                 <FormGroup>
-                                    <Label for="speciality">Speciality</Label>
+                                    <Label for="speciality"><strong>Speciality</strong></Label>
                                     <Row form>
                                         <select style={{height: "38px", width: "300px" }}
                                             value={this.state.doctor.speciality}
@@ -263,7 +263,7 @@ class AddDetails extends Component {
                         <Row form>
                             <Col >
                                 <FormGroup>
-                                    <Label for="experience">Experience</Label>
+                                    <Label for="experience"><strong>Experience</strong></Label>
                                     <Input type="number" name="experience" id="experience" placeholder="Enter Experience"
                                         value={this.state.doctor.experience}
                                         onChange={(e) => this.handleChange('experience', e.target.value)}
@@ -277,7 +277,7 @@ class AddDetails extends Component {
                             </Col>
                             <Col >
                                 <FormGroup>
-                                    <Label for="fees">Consult Fees</Label>
+                                    <Label for="fees"><strong>Consult Fees</strong></Label>
                                     <Input type="number" name="fees" id="fees" placeholder="Enter Consulting fees"
                                         value={this.state.doctor.fees}
                                         onChange={(e) => this.handleChange('fees', e.target.value)}
@@ -293,7 +293,7 @@ class AddDetails extends Component {
                         <Row form>
                             <Col >
                                 <FormGroup>
-                                    <Label for="qualification">Qualification</Label>
+                                    <Label for="qualification"><strong>Qualification</strong></Label>
                                     <Input type="text" name="qualification" id="qualification" placeholder="Enter Qualification"
                                         value={this.state.doctor.qualification}
                                         onChange={(e) => this.handleChange('qualification', e.target.value)}
@@ -307,7 +307,7 @@ class AddDetails extends Component {
                             </Col>
                             <Col >
                                 <FormGroup>
-                                    <Label for="practising">practising</Label>
+                                    <Label for="practising"><strong>Location</strong></Label>
                                     <Input type="text" name="practising" id="practising" placeholder="Enter practising"
                                         value={this.state.doctor.practising}
                                         onChange={(e) => this.handleChange('practising', e.target.value)}
@@ -321,7 +321,7 @@ class AddDetails extends Component {
                             </Col>
                         </Row>
                         <FormGroup>
-                            <Label for="languages">Languages</Label>
+                            <Label for="languages"><strong>Languages</strong></Label>
                             <Row form>
                                 <Col md={2}>
                                     <FormGroup check>
@@ -416,7 +416,7 @@ class AddDetails extends Component {
                         <Row form>
                             <Col >
                                 <FormGroup>
-                                    <Label for="email">Email</Label>
+                                    <Label for="email"><strong>Email</strong></Label>
                                     <Input type="email" name="email" id="email" placeholder="Enter Email-Id"
                                         value={this.state.doctor.email}
                                         onChange={(e) => this.handleChange('email', e.target.value)}
@@ -430,7 +430,7 @@ class AddDetails extends Component {
                             </Col>
                             <Col >
                                 <FormGroup>
-                                    <Label for="phone">Contact</Label>
+                                    <Label for="phone"><strong>Contact</strong></Label>
                                     <Input type="number" name="phone" id="phone" placeholder="Enter Contact Number"
                                         value={this.state.doctor.phone}
                                         onChange={(e) => this.handleChange('phone', e.target.value)}
@@ -446,7 +446,7 @@ class AddDetails extends Component {
                         <Row form>
                             <Col className="gender">
                                 <FormGroup>
-                                    <Label for="gender">Gender</Label>
+                                    <Label for="gender"><strong>Gender</strong></Label>
                                     {this.state.errorMsg && (
                                         <small style={{ color: "red" }}>
                                             {this.state.errorMsg.gender}
@@ -482,7 +482,7 @@ class AddDetails extends Component {
                             </Col>
                             <Col>
                                 <FormGroup>
-                                    <Label for="regno">Medical Registration Number</Label>
+                                    <Label for="regno"><strong>Medical Registration Number</strong></Label>
                                     <Input type="text" name="regno" id="regno" placeholder="Enter Medical registration number"
                                         value={this.state.doctor.regno}
                                         onChange={(e) => this.handleChange('regno', e.target.value)}
@@ -498,7 +498,7 @@ class AddDetails extends Component {
                         <Row form>
                             <Col>
                                 <FormGroup>
-                                    <Label for="specialization">Specialization</Label>
+                                    <Label for="specialization"><strong>Specialization</strong></Label>
                                     <Input type="text" name="specialization" id="specialization" placeholder="Enter specialization"
                                         value={this.state.doctor.specialization}
                                         onChange={(e) => this.handleChange('specialization', e.target.value)}
@@ -514,7 +514,7 @@ class AddDetails extends Component {
                         <Row form>
                             <Col>
                                 <FormGroup>
-                                    <Label for="superSpecialization">Super Specialization</Label>
+                                    <Label for="superSpecialization"><strong>Super-Specialization</strong></Label>
                                     <Input type="text" name="superSpecialization" id="superSpecialization" placeholder="Enter super specialization"
                                         value={this.state.doctor.superSpecialization}
                                         onChange={(e) => this.handleChange('superSpecialization', e.target.value)}
