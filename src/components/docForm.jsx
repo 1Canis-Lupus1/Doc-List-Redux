@@ -12,7 +12,7 @@ class AddDetails extends Component {
             experience: "",
             fees: "",
             qualification: "",
-            location: "",
+            practising: "",
             language: [],
             email: "",
             phone: "",
@@ -27,7 +27,7 @@ class AddDetails extends Component {
             experience: false,
             fees: false,
             qualification: false,
-            location: false,
+            practising: false,
             language: false,
             email: false,
             phone: false,
@@ -65,7 +65,7 @@ class AddDetails extends Component {
             experience: true,
             fees: true,
             qualification: true,
-            location: true,
+            practising: true,
             language: true,
             email: true,
             phone: true,
@@ -130,12 +130,12 @@ class AddDetails extends Component {
                     delete errorMsg[each];
                     isTrue.qualification = false;
                 }
-            } else if (each === "location" && isTrue.location) {
-                if (!doctor.location.trim().length) {
-                    errorMsg.location = "*Field Cannot Be Empty";
+            } else if (each === "practising" && isTrue.practising) {
+                if (!doctor.practising.trim().length) {
+                    errorMsg.practising = "*Field Cannot Be Empty";
                 } else {
                     delete errorMsg[each];
-                    isTrue.location = false;
+                    isTrue.practising = false;
                 }
             } else if (each === "email" && isTrue.email) {
                 if (!doctor.email.trim().length) {
@@ -307,14 +307,14 @@ class AddDetails extends Component {
                             </Col>
                             <Col >
                                 <FormGroup>
-                                    <Label for="location">Location</Label>
-                                    <Input type="text" name="location" id="location" placeholder="Enter Location"
-                                        value={this.state.doctor.location}
-                                        onChange={(e) => this.handleChange('location', e.target.value)}
+                                    <Label for="practising">practising</Label>
+                                    <Input type="text" name="practising" id="practising" placeholder="Enter practising"
+                                        value={this.state.doctor.practising}
+                                        onChange={(e) => this.handleChange('practising', e.target.value)}
                                     />
                                     {this.state.errorMsg && (
                                         <small style={{ color: "red" }}>
-                                            {this.state.errorMsg.location}
+                                            {this.state.errorMsg.practising}
                                         </small>
                                     )}
                                 </FormGroup>
