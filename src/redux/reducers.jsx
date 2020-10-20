@@ -30,7 +30,7 @@ const initialData = {
             Sunday: []
         }
     },
-    DoctorData: []
+    DocList: []
 }
 
 export const formDataReducer = (
@@ -72,7 +72,7 @@ export const formDataReducer = (
             break;
         }
         case ADD_TABLE: {
-            doctorState.DoctorData.push(action.payload.data)
+            doctorState.DocList.push(action.payload.data)
             doctorState.user = {
             name: "",
             experience: "",

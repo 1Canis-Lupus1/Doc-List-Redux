@@ -536,6 +536,7 @@ class AddDetails extends Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log("docForm",state);
     return {
         formState: state
     };

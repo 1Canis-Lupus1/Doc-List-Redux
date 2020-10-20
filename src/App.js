@@ -21,7 +21,7 @@ class App extends Component {
         <div className="App">
           <Details />
           <Switch>
-            <Route path="/addDocDetails" component={AddNewDoc} />
+            {/* <Route path="/addDocDetails" component={AddNewDoc} /> */}
             <Route path="/addDocForm" component={AddDetails} />
             <Route path="/addDocTime" component={AddTiming} />
             <Route path="/showDocList" component={DocDisplayTable} />
