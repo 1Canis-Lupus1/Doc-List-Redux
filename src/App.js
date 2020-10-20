@@ -15,13 +15,8 @@ class App extends Component {
       <div className="container mt-4">
       <Router>
         <PersistGate persistor={persistor}>
-            {/* Routes:<ol>
-              <li>"/form" for Doctor Form</li>
-              <li>"/timing" for Doctor Timings</li>
-              <li>"/display" for Doctor table Display</li>
-            </ol>  */}
             <Details />
-            <Button style={{color:"white"}}><Link path="/form" to="form">Add New Doctor</Link></Button>
+            <Button><Link path="/form" to="form">Add New Doctor</Link></Button>
           <Switch>
             <Route path="/form" component={()=>(<DocForm />)} />
           </Switch>
