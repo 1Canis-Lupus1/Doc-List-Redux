@@ -1,90 +1,86 @@
 import React, { Component } from 'react';
-// import './AddDetails.css';
 import { Redirect } from 'react-router-dom';
 import { Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from "react-redux";
-import { addBasicInfo } from '../../redux/actions/form-action';
+import { addFormData } from '../redux/actions';
 
 class AddDetails extends Component {
 
     state = {
-        user: {
+        doctor: {
             name: "",
             experience: "",
             fees: "",
             qualification: "",
-            practising: "",
+            location: "",
             language: [],
             email: "",
             phone: "",
-            medicalNo: "",
-            graduation: "",
-            specialization: "",
-            superSpecialization: "",
+            regno: "",
             gender: "",
-            speciality: ""
+            speciality: "",
+            specialization: "",
+            superSpecialization: ""
         },
-        isDirty: {
+        isTrue: {
             name: false,
             experience: false,
             fees: false,
             qualification: false,
-            practising: false,
+            location: false,
             language: false,
             email: false,
             phone: false,
-            medicalNo: false,
-            graduation: false,
+            regno: false,
             specialization: false,
             superSpecialization: false,
             gender: false,
             speciality: false
         },
-        errors: {},
+        errorMsg: {},
         redirect: false
     }
 
     handleChange = (field, value) => {
-        const { user, isDirty } = this.state;
+        const { doctor, isTrue } = this.state;
         if (field === 'language') {
             if (value.checked) {
-                user[field].push(value.value);
+                doctor[field].push(value.value);
             } else {
-                user[field].splice(user[field].indexOf(value.value), 1);
+                doctor[field].splice(doctor[field].indexOf(value.value), 1);
             }
         } else {
-            user[field] = value;
+            doctor[field] = value;
         }
-        isDirty[field] = true;
-        this.setState({ user, isDirty }, () => {
-            this.validateForm();
+        isTrue[field] = true;
+        this.setState({ doctor, isTrue }, () => {
+            this.validation();
         });
     }
 
-    handleOnSubmit = (e) => {
+    handleSubmit = (e) => {
         e.preventDefault();
-        let isDirty = {
+        let isTrue = {
             name: true,
             experience: true,
             fees: true,
             qualification: true,
-            practising: true,
+            location: true,
             language: true,
             email: true,
             phone: true,
-            medicalNo: true,
-            graduation: true,
-            specialization: true,
-            superSpecialization: true,
+            regno: true,
             gender: true,
-            speciality: true
+            speciality: true,
+            specialization: true,
+            superSpecialization: true
         };
-        this.setState({ isDirty }, () => {
-            let errors = this.validateForm();
-            console.log(errors);
-            if (!errors) {
-                const basicForm = this.state.user;
-                this.props.addBasicInfo({ basicForm });
+        this.setState({ isTrue }, () => {
+            let errorMsg = this.validation();
+            console.log(errorMsg);
+            if (!errorMsg) {
+                const doctorForm = this.state.doctor;
+                this.props.addFormData({ doctorForm });
                 this.setState({
                     redirect: true
                 });
@@ -92,161 +88,156 @@ class AddDetails extends Component {
         });
     };
 
-    validateForm = () => {
-        const { user, errors, isDirty } = this.state;
-        Object.keys(user).forEach((each) => {
-            if (each === "name" && isDirty.name) {
-                if (!user.name.trim().length) {
-                    errors.name = "*Required";
-                } else if (user.name.trim().length &&
-                    !user.name.match(/^[a-zA-Z ]*$/)
+    validation = () => {
+        const { doctor, errorMsg, isTrue } = this.state;
+        Object.keys(doctor).forEach((each) => {
+            if (each === "name" && isTrue.name) {
+                if (!doctor.name.trim().length) {
+                    errorMsg.name = "*Required";
+                } else if (doctor.name.trim().length &&
+                    !doctor.name.match(/^[a-zA-Z ]*$/)
                 ) {
-                    errors.name = "Invalid name format";
-                } else if (user.name.trim().length <= 3) {
-                    errors.name = "Name should be greater than 3 characters";
+                    errorMsg.name = "Invalid name format";
+                } else if (doctor.name.trim().length <= 3) {
+                    errorMsg.name = "Name should be greater than 3 characters";
                 }
                 else {
-                    delete errors[each];
-                    isDirty.name = false;
+                    delete errorMsg[each];
+                    isTrue.name = false;
                 }
-            } else if (each === "experience" && isDirty.experience) {
-                if (!user.experience.trim().length) {
-                    errors.experience = "*Required";
-                } else if (!user.experience.match(/^[0-9]{1,2}$/)) {
-                    errors.experience = "Enter valid experience in years";
+            } else if (each === "experience" && isTrue.experience) {
+                if (!doctor.experience.trim().length) {
+                    errorMsg.experience = "*Required";
+                } else if (!doctor.experience.match(/^[0-9]{1,2}$/)) {
+                    errorMsg.experience = "Enter valid experience in years";
                 } else {
-                    delete errors[each];
-                    isDirty.experience = false;
+                    delete errorMsg[each];
+                    isTrue.experience = false;
                 }
-            } else if (each === "fees" && isDirty.fees) {
-                if (!user.fees.trim().length) {
-                    errors.fees = "*Required";
-                } else if (!user.fees.match(/^[0-9]{4}$/)) {
-                    errors.fees = "Enter valid amount";
+            } else if (each === "fees" && isTrue.fees) {
+                if (!doctor.fees.trim().length) {
+                    errorMsg.fees = "*Required";
+                } else if (!doctor.fees.match(/^[0-9]{4}$/)) {
+                    errorMsg.fees = "Enter valid amount";
                 } else {
-                    delete errors[each];
-                    isDirty.fees = false;
+                    delete errorMsg[each];
+                    isTrue.fees = false;
                 }
-            } else if (each === "qualification" && isDirty.qualification) {
-                if (!user.qualification.trim().length) {
-                    errors.qualification = "*Required";
+            } else if (each === "qualification" && isTrue.qualification) {
+                if (!doctor.qualification.trim().length) {
+                    errorMsg.qualification = "*Required";
                 } else {
-                    delete errors[each];
-                    isDirty.qualification = false;
+                    delete errorMsg[each];
+                    isTrue.qualification = false;
                 }
-            } else if (each === "practising" && isDirty.practising) {
-                if (!user.practising.trim().length) {
-                    errors.practising = "*Required";
+            } else if (each === "location" && isTrue.location) {
+                if (!doctor.location.trim().length) {
+                    errorMsg.location = "*Required";
                 } else {
-                    delete errors[each];
-                    isDirty.practising = false;
+                    delete errorMsg[each];
+                    isTrue.location = false;
                 }
-            } else if (each === "email" && isDirty.email) {
-                if (!user.email.trim().length) {
-                    errors.email = "*Required";
-                } else if (!user.email.match(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i)) {
-                    errors.email = "Invalid Email";
+            } else if (each === "email" && isTrue.email) {
+                if (!doctor.email.trim().length) {
+                    errorMsg.email = "*Required";
+                } else if (!doctor.email.match(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i)) {
+                    errorMsg.email = "Invalid Email";
                 } else {
-                    delete errors[each];
-                    isDirty.email = false;
+                    delete errorMsg[each];
+                    isTrue.email = false;
                 }
-            } else if (each === "phone" && isDirty.phone) {
-                if (!user.phone.trim().length) {
-                    errors.phone = "*Required";
-                } else if (!user.phone.match(/^[0-9]{10}$/)) {
-                    errors.phone = "Enter valid phone number";
+            } else if (each === "phone" && isTrue.phone) {
+                if (!doctor.phone.trim().length) {
+                    errorMsg.phone = "*Required";
+                } else if (!doctor.phone.match(/^[0-9]{10}$/)) {
+                    errorMsg.phone = "Enter valid phone number";
                 } else {
-                    delete errors[each];
-                    isDirty.phone = false;
+                    delete errorMsg[each];
+                    isTrue.phone = false;
                 }
-            } else if (each === "medicalNo" && isDirty.medicalNo) {
-                if (!user.medicalNo.trim().length) {
-                    errors.medicalNo = "*Required";
+            } else if (each === "regno" && isTrue.regno) {
+                if (!doctor.regno.trim().length) {
+                    errorMsg.regno = "*Required";
                 } else {
-                    delete errors[each];
-                    isDirty.medicalNo = false;
+                    delete errorMsg[each];
+                    isTrue.regno = false;
                 }
-            } else if (each === "graduation" && isDirty.graduation) {
-                if (!user.graduation.trim().length) {
-                    errors.graduation = "*Required";
+            } else if (each === "specialization" && isTrue.specialization) {
+                if (!doctor.specialization.trim().length) {
+                    errorMsg.specialization = "*Required";
                 } else {
-                    delete errors[each];
-                    isDirty.graduation = false;
+                    delete errorMsg[each];
+                    isTrue.specialization = false;
                 }
-            } else if (each === "specialization" && isDirty.specialization) {
-                if (!user.specialization.trim().length) {
-                    errors.specialization = "*Required";
+            } else if (each === "superSpecialization" && isTrue.superSpecialization) {
+                if (!doctor.superSpecialization.trim().length) {
+                    errorMsg.superSpecialization = "*Required";
                 } else {
-                    delete errors[each];
-                    isDirty.specialization = false;
+                    delete errorMsg[each];
+                    isTrue.superSpecialization = false;
                 }
-            } else if (each === "superSpecialization" && isDirty.superSpecialization) {
-                if (!user.superSpecialization.trim().length) {
-                    errors.superSpecialization = "*Required";
+            } else if (each === "speciality" && isTrue.speciality) {
+                if (doctor.speciality === "") {
+                    errorMsg.speciality = "*Required";
                 } else {
-                    delete errors[each];
-                    isDirty.superSpecialization = false;
+                    delete errorMsg[each];
+                    isTrue.speciality = false;
                 }
-            } else if (each === "speciality" && isDirty.speciality) {
-                if (user.speciality === "") {
-                    errors.speciality = "*Required";
+            } else if (each === "gender" && isTrue.gender) {
+                if (doctor.gender === "") {
+                    errorMsg.gender = "*Required";
                 } else {
-                    delete errors[each];
-                    isDirty.speciality = false;
+                    delete errorMsg[each];
+                    isTrue.gender = false;
                 }
-            } else if (each === "gender" && isDirty.gender) {
-                if (user.gender === "") {
-                    errors.gender = "*Required";
+            } else if (each === "language" && isTrue.language) {
+                if (!doctor.language.length) {
+                    errorMsg.language = "*Required atleast one language";
                 } else {
-                    delete errors[each];
-                    isDirty.gender = false;
-                }
-            } else if (each === "language" && isDirty.language) {
-                if (!user.language.length) {
-                    errors.language = "*Required atleast one language";
-                } else {
-                    delete errors[each];
-                    isDirty.language = false;
+                    delete errorMsg[each];
+                    isTrue.language = false;
                 }
             }
         });
-        this.setState({ errors });
-        return Object.keys(errors).length ? errors : null;
+        this.setState({ errorMsg });
+        return Object.keys(errorMsg).length ? errorMsg : null;
     }
 
     render() {
         return (
-            <div className="basicForm">
+            <React.Fragment>
+            <div className="doctorForm">
                 {this.state.redirect ? <Redirect to={{
-                    pathname: '/add-doctor/step2'
+                    pathname: '/addDocTime'
                 }} /> : ''}
-                <div className="title">
-                    <h1>Add Basic Info</h1>
-                </div>
-                <div className="formBody">
-                    <Form onSubmit={this.handleOnSubmit}>
+                <Col className="text-center">
+                    <hr/><hr/>
+                    <h1>New Doctor Form :</h1>
+                    <hr/><hr/>
+                </Col>
+                    <Form onSubmit={this.handleSubmit}>
                         <Row form>
-                            <Col md={6}>
+                            <Col >
                                 <FormGroup>
                                     <Label for="fullName">Name</Label>
                                     <Input type="text" name="fullName" id="fullName"
                                         placeholder="Enter full name"
-                                        value={this.state.user.name}
+                                        value={this.state.doctor.name}
                                         onChange={(e) => this.handleChange('name', e.target.value)}
                                     />
-                                    {this.state.errors && (
+                                    {this.state.errorMsg && (
                                         <small style={{ color: "red" }}>
-                                            {this.state.errors.name}
+                                            {this.state.errorMsg.name}
                                         </small>
                                     )}
                                 </FormGroup>
                             </Col>
-                            <Col md={6}>
+                            <Col >
                                 <FormGroup>
                                     <Label for="speciality">Speciality</Label>
                                     <Row form>
                                         <select style={{ marginLeft: "60px", height: "30px", width: "300px" }}
-                                            value={this.state.user.speciality}
+                                            value={this.state.doctor.speciality}
                                             onChange={(e) => this.handleChange("speciality", e.target.value)}
                                         >
                                             <option></option>
@@ -265,9 +256,9 @@ class AddDetails extends Component {
                                             <option value="fcece">fcece</option>
                                             <option value="Test">Test</option>
                                         </select>
-                                        {this.state.errors && (
+                                        {this.state.errorMsg && (
                                             <small style={{ color: "red" }}>
-                                                {this.state.errors.speciality}
+                                                {this.state.errorMsg.speciality}
                                             </small>
                                         )}
                                     </Row>
@@ -275,60 +266,60 @@ class AddDetails extends Component {
                             </Col>
                         </Row>
                         <Row form>
-                            <Col md={6}>
+                            <Col >
                                 <FormGroup>
                                     <Label for="experience">Experience</Label>
                                     <Input type="number" name="experience" id="experience" placeholder="Enter experience in years"
-                                        value={this.state.user.experience}
+                                        value={this.state.doctor.experience}
                                         onChange={(e) => this.handleChange('experience', e.target.value)}
                                     />
-                                    {this.state.errors && (
+                                    {this.state.errorMsg && (
                                         <small style={{ color: "red" }}>
-                                            {this.state.errors.experience}
+                                            {this.state.errorMsg.experience}
                                         </small>
                                     )}
                                 </FormGroup>
                             </Col>
-                            <Col md={6}>
+                            <Col >
                                 <FormGroup>
                                     <Label for="fees">Consult Fees</Label>
                                     <Input type="number" name="fees" id="fees" placeholder="Enter fees"
-                                        value={this.state.user.fees}
+                                        value={this.state.doctor.fees}
                                         onChange={(e) => this.handleChange('fees', e.target.value)}
                                     />
-                                    {this.state.errors && (
+                                    {this.state.errorMsg && (
                                         <small style={{ color: "red" }}>
-                                            {this.state.errors.fees}
+                                            {this.state.errorMsg.fees}
                                         </small>
                                     )}
                                 </FormGroup>
                             </Col>
                         </Row>
                         <Row form>
-                            <Col md={6}>
+                            <Col >
                                 <FormGroup>
                                     <Label for="qualification">Qualification</Label>
                                     <Input type="text" name="qualification" id="qualification" placeholder="Enter qualification"
-                                        value={this.state.user.qualification}
+                                        value={this.state.doctor.qualification}
                                         onChange={(e) => this.handleChange('qualification', e.target.value)}
                                     />
-                                    {this.state.errors && (
+                                    {this.state.errorMsg && (
                                         <small style={{ color: "red" }}>
-                                            {this.state.errors.qualification}
+                                            {this.state.errorMsg.qualification}
                                         </small>
                                     )}
                                 </FormGroup>
                             </Col>
-                            <Col md={6}>
+                            <Col >
                                 <FormGroup>
-                                    <Label for="practising">Practising At</Label>
-                                    <Input type="text" name="practising" id="practising" placeholder="Enter practising at"
-                                        value={this.state.user.practising}
-                                        onChange={(e) => this.handleChange('practising', e.target.value)}
+                                    <Label for="location">location At</Label>
+                                    <Input type="text" name="location" id="location" placeholder="Enter location at"
+                                        value={this.state.doctor.location}
+                                        onChange={(e) => this.handleChange('location', e.target.value)}
                                     />
-                                    {this.state.errors && (
+                                    {this.state.errorMsg && (
                                         <small style={{ color: "red" }}>
-                                            {this.state.errors.practising}
+                                            {this.state.errorMsg.location}
                                         </small>
                                     )}
                                 </FormGroup>
@@ -447,50 +438,50 @@ class AddDetails extends Component {
                                         <Label for="kannada" check>Kannada</Label>
                                     </FormGroup>
                                 </Col>
-                                {this.state.errors && (
+                                {this.state.errorMsg && (
                                     <small style={{ color: "red" }}>
-                                        {this.state.errors.language}
+                                        {this.state.errorMsg.language}
                                     </small>
                                 )}
                             </Row>
                         </FormGroup>
                         <Row form>
-                            <Col md={6}>
+                            <Col >
                                 <FormGroup>
                                     <Label for="email">Email</Label>
                                     <Input type="email" name="email" id="email" placeholder="Enter email"
-                                        value={this.state.user.email}
+                                        value={this.state.doctor.email}
                                         onChange={(e) => this.handleChange('email', e.target.value)}
                                     />
-                                    {this.state.errors && (
+                                    {this.state.errorMsg && (
                                         <small style={{ color: "red" }}>
-                                            {this.state.errors.email}
+                                            {this.state.errorMsg.email}
                                         </small>
                                     )}
                                 </FormGroup>
                             </Col>
-                            <Col md={6}>
+                            <Col >
                                 <FormGroup>
                                     <Label for="phone">Phone</Label>
                                     <Input type="number" name="phone" id="phone" placeholder="Enter phone number"
-                                        value={this.state.user.phone}
+                                        value={this.state.doctor.phone}
                                         onChange={(e) => this.handleChange('phone', e.target.value)}
                                     />
-                                    {this.state.errors && (
+                                    {this.state.errorMsg && (
                                         <small style={{ color: "red" }}>
-                                            {this.state.errors.phone}
+                                            {this.state.errorMsg.phone}
                                         </small>
                                     )}
                                 </FormGroup>
                             </Col>
                         </Row>
                         <Row form>
-                            <Col md={6} className="gender">
+                            <Col className="gender">
                                 <FormGroup>
                                     <Label for="gender">Gender</Label>
-                                    {this.state.errors && (
+                                    {this.state.errorMsg && (
                                         <small style={{ color: "red" }}>
-                                            {this.state.errors.gender}
+                                            {this.state.errorMsg.gender}
                                         </small>
                                     )}
                                     <Row>
@@ -513,71 +504,57 @@ class AddDetails extends Component {
                                     </Row>
                                 </FormGroup>
                             </Col>
-                            <Col md={6}>
+                            <Col>
                                 <FormGroup>
-                                    <Label for="medicalNo">Medical Registration Number</Label>
-                                    <Input type="text" name="medicalNo" id="medicalNo" placeholder="Enter Medical registration number"
-                                        value={this.state.user.medicalNo}
-                                        onChange={(e) => this.handleChange('medicalNo', e.target.value)}
+                                    <Label for="regno">Medical Registration Number</Label>
+                                    <Input type="text" name="regno" id="regno" placeholder="Enter Medical registration number"
+                                        value={this.state.doctor.regno}
+                                        onChange={(e) => this.handleChange('regno', e.target.value)}
                                     />
-                                    {this.state.errors && (
+                                    {this.state.errorMsg && (
                                         <small style={{ color: "red" }}>
-                                            {this.state.errors.medicalNo}
+                                            {this.state.errorMsg.regno}
                                         </small>
                                     )}
                                 </FormGroup>
                             </Col>
                         </Row>
                         <Row form>
-                            <Col md={6}>
-                                <FormGroup>
-                                    <Label for="graduation">Graduation</Label>
-                                    <Input type="text" name="graduation" id="graduation" placeholder="Enter graduation details"
-                                        value={this.state.user.graduation}
-                                        onChange={(e) => this.handleChange('graduation', e.target.value)}
-                                    />
-                                    {this.state.errors && (
-                                        <small style={{ color: "red" }}>
-                                            {this.state.errors.graduation}
-                                        </small>
-                                    )}
-                                </FormGroup>
-                            </Col>
-                            <Col md={6}>
+                            <Col>
                                 <FormGroup>
                                     <Label for="specialization">Specialization</Label>
                                     <Input type="text" name="specialization" id="specialization" placeholder="Enter specialization"
-                                        value={this.state.user.specialization}
+                                        value={this.state.doctor.specialization}
                                         onChange={(e) => this.handleChange('specialization', e.target.value)}
                                     />
-                                    {this.state.errors && (
+                                    {this.state.errorMsg && (
                                         <small style={{ color: "red" }}>
-                                            {this.state.errors.specialization}
+                                            {this.state.errorMsg.specialization}
                                         </small>
                                     )}
                                 </FormGroup>
                             </Col>
                         </Row>
                         <Row form>
-                            <Col md={6}>
+                            <Col>
                                 <FormGroup>
                                     <Label for="superSpecialization">Super Specialization</Label>
                                     <Input type="text" name="superSpecialization" id="superSpecialization" placeholder="Enter super specialization"
-                                        value={this.state.user.superSpecialization}
+                                        value={this.state.doctor.superSpecialization}
                                         onChange={(e) => this.handleChange('superSpecialization', e.target.value)}
                                     />
-                                    {this.state.errors && (
+                                    {this.state.errorMsg && (
                                         <small style={{ color: "red" }}>
-                                            {this.state.errors.superSpecialization}
+                                            {this.state.errorMsg.superSpecialization}
                                         </small>
                                     )}
                                 </FormGroup>
                             </Col>
                         </Row>
-                        <Button type="submit">Next</Button>
+                        <Button type="submit">SAVE DATA</Button>
                     </Form>
                 </div>
-            </div >
+        </React.Fragment>    
         )
     }
 }
@@ -590,126 +567,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addBasicInfo: (basicForm) => dispatch(addBasicInfo(basicForm))
+        addFormData: (doctorForm) => dispatch(addFormData(doctorForm))
     }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddDetails);
-
-//Functional Component 
-// import React, { useState } from 'react';
-// import { Row, Col, Form, FormGroup, Input, Label, Button } from 'reactstrap';
-// import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-// import DocTime from './docTiming';
-// import {addFormData} from '../redux/actions';
-// import {connect} from 'react-redux';
-
-// const DocForm = ({addFormData}) => {
-
-//     //Setting initial state of input fields
-//     const intialData = { name: "", speciality: "", experience: "", fees: "", qualification: "", location: "", lang: "", email: "", phno: "", gender: "", regno: "", specialization: "", supSpecialization: "" };
-//     const [formData, setFormData] = useState(intialData);
-
-//     //Destructuring Input Field Values
-//     const { name, speciality, experience, fees, qualification, location, lang, email, phno, gender, regno, specialization, supSpecialization } = formData;
-
-//     console.log("DOCFORM:",formData);
-
-//     //Handling Input Field Value Change
-//     const handleChange = e => {
-//         setFormData({ ...formData, [e.target.name]: [e.target.value] });
-//         // console.log(formData);
-//     }
-
-//     //Handling Form Submission
-//     const handleSubmit = e => {
-//         e.preventDefault();
-//         console.log(formData);
-//         addFormData(formData);//Sending this value to redux store
-//     }
-
-//     return (
-//         <React.Fragment>
-//             <Row>
-//                 <Col className="text-center">
-//                     <hr/><hr/>
-//                     <h1>Doctor Form :</h1>
-//                     <hr/><hr/>
-//                 </Col>
-//             </Row>
-//             <Row>
-//                 <Col>
-//                     <Form>
-//                         <FormGroup>
-//                             <Label for="name">Doctor Name: </Label>
-//                             <Input name="name" placeholder="Enter Doctor's Name" value={name} onChange={handleChange}/>
-//                             {errors && (<p style={{color:"red"}}>{error.name}</p>)}
-//                         </FormGroup>
-//                         <FormGroup>
-//                             <Label for="speciality">Speciality: </Label>
-//                             <Input type="select" name="speciality" id="exampleSelect">
-//                                 <option>speciality 1</option>
-//                                 <option>speciality 2</option>
-//                                 <option>speciality 3</option>
-//                                 <option>speciality 4</option>
-//                                 <option>speciality 5</option>
-//                             </Input>
-//                         </FormGroup>
-//                         <FormGroup>
-//                             <Label for="experience">Experience: </Label>
-//                             <Input name="experience" placeholder="Enter Doctor's Experience" value={experience} onChange={handleChange}></Input>
-//                         </FormGroup>
-//                         <FormGroup>
-//                             <Label for="fees">Consulting Fees: </Label>
-//                             <Input name="fees" placeholder="Enter Doctor's Fees" value={fees} onChange={handleChange}></Input>
-//                         </FormGroup>
-//                         <FormGroup>
-//                             <Label for="qualification">Qualification: </Label>
-//                             <Input name="qualification" placeholder="Enter Doctor's Qualification" value={qualification} onChange={handleChange}></Input>
-//                         </FormGroup>
-//                         <FormGroup>
-//                             <Label for="location">Location: </Label>
-//                             <Input name="location" placeholder="Enter Doctor's Location" value={location} onChange={handleChange}></Input>
-//                         </FormGroup>
-//                         <FormGroup>
-//                             <Label for="lang">Languages: </Label>
-//                             <Input name="lang" value={lang} onChange={handleChange}></Input>
-//                         </FormGroup>
-//                         <FormGroup>
-//                             <Label for="email">Email Id: </Label>
-//                             <Input name="email" placeholder="Enter Doctor's Email" value={email} onChange={handleChange}></Input>
-//                         </FormGroup>
-//                         <FormGroup>
-//                             <Label for="phno">Contact Number: </Label>
-//                             <Input name="phno" placeholder="Enter Doctor's Number" value={phno} onChange={handleChange}></Input>
-//                         </FormGroup>
-//                         <FormGroup>
-//                             <Label for="gender">Gender: </Label>
-//                             <Input name="gender" value={gender} onChange={handleChange}></Input>
-//                         </FormGroup>
-//                         <FormGroup>
-//                             <Label for="regno">Medical Registration Number: </Label>
-//                             <Input name="regno" placeholder="Enter Doctor's Reistration Number" value={regno} onChange={handleChange}></Input>
-//                         </FormGroup>
-//                         <FormGroup>
-//                             <Label for="specialization">Specialization: </Label>
-//                             <Input name="specialization" placeholder="Enter Doctor's Specialization" value={specialization} onChange={handleChange}></Input>
-//                         </FormGroup>
-//                         <FormGroup>
-//                             <Label for="supSpecialization">Super Specialization: </Label>
-//                             <Input name="supSpecialization" placeholder="Enter Doctor's Super Specialization" value={supSpecialization} onChange={handleChange}></Input>
-//                         </FormGroup>
-//                         <Router>
-//                             <Button style={{color:"white"}} onClick={handleSubmit}><Link path="/timing" to="timing">Add Timings</Link></Button>
-//                             <Switch>
-//                                 <Route path="/timing" component={DocTime} />
-//                             </Switch>
-//                         </Router>
-//                     </Form>
-//                 </Col>
-//             </Row>
-//         </React.Fragment>
-//     )
-// }
-
-// export default connect(null,{addFormData})(DocForm);

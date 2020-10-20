@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-// import DocForm from './components/docForm';
-// import Details from './components/docDetails';
-// import {Button} from 'reactstrap';
+import DocForm from './components/docForm';
+import Details from './components/docDetails';
+import {Button} from 'reactstrap';
 import {Provider} from 'react-redux';
 import {store,persistor} from "./redux/store";
-import {PersistGate} from 'redux-persist/integration.react';
+import {PersistGate} from 'redux-persist/integration/react';
 
 class App extends Component {
   render(){

@@ -3,7 +3,8 @@ import {displayData,displayTime} from './reducers';
 import logger from 'redux-logger';
 import hardSet from 'redux-persist/es/stateReconciler/hardSet';
 import { persistStore, persistReducer } from "redux-persist";
-import storage from 'redux-persist/lib/storage'
+import storage from 'redux-persist/lib/storage';
+import {formDataReducer} from './reducers'
 
 const reactPersist={
     key:'root',

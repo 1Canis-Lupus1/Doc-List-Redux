@@ -1,22 +1,27 @@
-import {ADD_FORM,ADD_TIME,ADD_TABLE} from './actionTypes';
+import { 
+    ADD_FORM,
+    ADD_TIME,
+    ADD_TABLE
+} from './actionTypes';
 
-export const addFormData=(content)=>({
-    type: ADD_FORM,
-    payload:{
-        content
+export const addFormData = docData => {
+    return {
+        type: ADD_FORM,
+        payload: docData
     }
-})
+}
 
-export const addTimeData=(content)=>({
-    type: ADD_TIME,
-    payload:{
-        content
+export const addTimeData = docTime => {
+    return {
+        type: ADD_TIME,
+        payload: docTime
     }
-})
+}
 
-export const addTableData=(content)=>({
-    type: ADD_TABLE,
-    payload:{
-        content
+export const addTableData = docTable => {
+    return {
+        type: ADD_TABLE,
+        payload: docTable
     }
-})
+}
+
