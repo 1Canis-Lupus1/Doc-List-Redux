@@ -6,10 +6,10 @@ function Navigation() {
     return (
         <div>
             <nav className = "logo">
-                <img src="https://askvaidya.in/wp-content/uploads/2020/08/ask-vaidya-logo.png" height="60px"/>
+                <a href="https://sameapk.com/ask-vaidya/" target="_blank"><img src="https://askvaidya.in/wp-content/uploads/2020/08/ask-vaidya-logo.png" height="60px"/></a>
                 <ul className = "link">
                     <Link to = "/docDisplay">
-                        <li className = "docDisplay"><strong><u>Display Doctor List</u></strong></li>
+                        <li className = "docDisplay"><strong><u>Fetch Doctor-List</u></strong></li>
                     </Link>
                 </ul>
             </nav>

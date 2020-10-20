@@ -215,7 +215,7 @@ class AddDetails extends Component {
                     <h1>New Doctor Form :</h1>
                     <hr/><hr/>
                 </Col>
-                    <Form onSubmit={this.handleSubmit}>
+                    <Form onSubmit={this.handleSubmit} className="m-5">
                         <Row form>
                             <Col >
                                 <FormGroup>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Row, Col, Table } from 'reactstrap';
 
 export const DocDisplay = ({doc}) => {
 
