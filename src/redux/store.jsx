@@ -1,5 +1,4 @@
 import {createStore,applyMiddleware} from 'redux';
-import {displayData,displayTime} from './reducers';
 import logger from 'redux-logger';
 import hardSet from 'redux-persist/es/stateReconciler/hardSet';
 import { persistStore, persistReducer } from "redux-persist";
@@ -22,7 +21,3 @@ export const store=createStore(
 );
 
 export const persistor=persistStore(store);
-
-
-// //conbineReducers and createStore    
-// export default createStore(combineReducers({displayData,displayTime}),window._REDUX_DEVTOOLS_EXTENSION_ && window._REDUX_DEVTOOLS_EXTENSION_())
