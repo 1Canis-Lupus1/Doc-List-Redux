@@ -49,23 +49,22 @@ class Details extends Component {
                                     <th>Speciality</th>
                                     <th>Consult Fees</th>
                                     <th>Consults</th>
-                                    <th>Super-Speciality</th>
                                     <th>Schedule</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
                             {this.state.details.map((item) => {
+                                        console.log("docDeatils",item);
                                         return(
                                             <tr key={item.id}>
                                         <th>{item.name?.full}</th>
                                         <th>{item.email}</th>
                                         <th>{item.phone}</th>
                                         <th>{item.location?.city}    </th>
-                                        <th>{item.specialty}</th>
+                                        <th>{item._specialty?.name}</th>
                                         <th>{item.fee}</th>
                                         <th>{item.totalAppointment}</th>
-                                        <th>{item.superSpeciality}</th>
                                         <th>{item.registrationNumber}</th>
                                         <th>{item.isActive?"Active":"In-Active"}</th>
                                             </tr>
